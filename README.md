@@ -36,13 +36,13 @@ Teléfono fijo: 976242701
 Telefono móvil: 676750436
 ```
 
-## Dependencias
-El script utiliza las siguientes bibliotecas de Python:
-- random: Para generar datos aleatorios.
-- os: Para manejar el sistema de archivos.
+## Dependencies
+The script uses the following Python libraries:
+- random: To generate random data.
+- os: To handle the file system.
 
-## Contribuciones
-Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un issue o envía un pull request.
+## Contributions
+Contributions are welcome. If you want to contribute, please open an issue or send a pull request.
 
-## Licencia
-Este proyecto está licenciado bajo la Licencia MIT. 
+## License
+This project is licensed under the MIT License.
