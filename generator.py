@@ -1,5 +1,5 @@
 import random
-import csv
+import os
 
 # Provinces of Spain and autonomous cities
 provinces = [ "Orense", "Pontevedra", "La Coruña", "Lugo",
@@ -210,6 +210,38 @@ def generate_person():
 
     return f"Nombre: {name} {surname1} {surname2}\nFecha de nacimiento: {birthdate}\nDNI: {dni}\nEmail: {mail}"
 
+def generate_persons_txt(n):
+    """
+    Generates n files with random persons in each one. Each person has the following fields:
+    - Name
+    - Surname
+    - Birthdate
+    - Email
+    - Address
+    - Landline phone
+    - Mobile phone
+    """
+
+    output_dir = "data/"
+    try:
+        os.mkdir(output_dir)
+    except FileExistsError:
+        pass
+
+    for _ in range(n):
+        id = random.randint(0, 999999)
+        with open(f"{output_dir}{id}.txt", "w") as f:
+            f.write(generate_person())
+            f.write("\n")
+            f.write(generate_address())
+
 if __name__ == "__main__":
-    print(generate_person())
-    print(generate_address())
+    print("This is a Python script to generate random persons with their information.")
+    print("How many persons do you want to generate?")
+    n = int(input())
+    if n <= 0:
+        print("The number of persons must be greater than 0.")
+        exit(1)
+    print(f"Generating {n} persons...")
+    generate_persons_txt(n)
+    print("Persons generated.")
