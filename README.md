@@ -16,10 +16,9 @@ To run the script and generate synthetic information, follow these steps:
 2. Run the script with the following command:
 
 ```sh
-python [generator.py](http://_vscodecontentref_/0)
+python3 generator.py
 ```
-3. Enter the number of persons you want to generate when prompted.
-4. The generated files will be saved in the data/ directory.
+3. Enter the number of persons you want to generate.
 
 ## Example Output
 A generated file may have the following format:
