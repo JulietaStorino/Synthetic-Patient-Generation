@@ -159,6 +159,54 @@ mail_domains = [
     "mail.com", "zoho.com",  "gmx.com", "us.es", "ual.es", "uhu.es", "ub.edu", "ucm.es"
 ]
 
+risk_diseases = [
+    "Hipertensión", "Diabetes", "Enfermedad cardíaca", "Asma", "remisión de cáncer de páncreas", "Cáncer de seno", "Enfermedad pulmonar crónica",
+    "Insuficiencia renal", "Enfermedad hepática", "Obesidad", "Colesterol alto", "Artritis", "Osteoporosis", "Depresión",
+    "Ansiedad", "Trastorno bipolar", "Esquizofrenia", "Enfermedad de Alzheimer", "Enfermedad de Parkinson", "Epilepsia",
+    "Migrañas crónicas", "Apnea del sueño", "Enfermedad inflamatoria intestinal (EII)", "Colitis ulcerosa", "Enfermedad de Crohn",
+    "Hepatitis B", "Hepatitis C", "VIH/SIDA", "Infecciones recurrentes", "Trastornos de la tiroides", "Enfermedad pulmonar obstructiva crónica (EPOC)",
+    "Trastorno de déficit de atención e hiperactividad (TDAH)", "Autismo", "Fibromialgia", "Síndrome de fatiga crónica", "Anemia",
+    "Esclerosis múltiple", "Lupus", "Psoriasis", "Eczema", "Celiaquía", "Enfermedad de Wilson", "Síndrome de Marfan", "Síndrome de Down",
+    "Anemia falciforme", "Talasemia", "Hemofilia", "Enfermedad de Gaucher", "Síndrome de Tourette", "Trastornos alimentarios (anorexia, bulimia)",
+    "Enfermedad de Huntington"
+]
+
+high_risk_professions = [
+    "Médico", "Enfermera", "Técnico de Cuidados Auxiliares de Enfermería", "Paramédico", "Cirujano", "Dentista", "Farmacéutico",
+    "Trabajador de la Construcción", "Albañil", "Carpintero", "Electricista", "Plomero", "Pintor de Construcción",
+    "Trabajador Agrícola", "Granjero", "Jornalero", "Operador de Maquinaria Agrícola", "Trabajador de Riego",
+    "Trabajador Industrial", "Operador de Máquina", "Fabricante", "Trabajador de Línea de Producción", "Montador", "Soldador",
+    "Trabajador de Laboratorio", "Químico", "Técnico de Laboratorio", "Científico de Investigación", "Microbiólogo", "Técnico de Radiología",
+    "Trabajador de Servicios de Limpieza", "Conserje", "Limpiador", "Trabajador de Sanitización", "Trabajador de Mantenimiento",
+    "Trabajador de Logística y Transporte", "Conductor de Camión", "Operador de Maquinaria Pesada", "Repartidor", "Trabajador de Almacén",
+    "Trabajador de Minería", "Minero", "Operador de Equipos Mineros", "Ingeniero de Minas", "Inspector de Seguridad Minera",
+    "Bombero", "Policía", "Guardia de Seguridad", "Soldado", "Trabajador de Residuos Sólidos", "Operador de Plantas de Tratamiento"
+]
+
+def generate_risk_condition():
+    """
+    Generates risk conditions randomly from a list of common diseases and health conditions.
+    """
+    risk_conditions_list = []
+
+    is_risk = random.choice([True, False])
+
+    if is_risk:
+        number_conditions = random.choice([1, 1, 1, 2, 2, 3])
+
+        is_profession_risk = random.choice([True, False])
+
+        if is_profession_risk:
+            number_conditions -= 1
+            risk_conditions_list.append(random.choice(high_risk_professions))
+        else:
+            for _ in range(number_conditions):
+                risk_conditions_list.append(random.choice(risk_diseases))
+    
+    risk_conditions = f"Condiciones de riesgo: {', '.join(risk_conditions_list)}" if is_risk else ''
+
+    return risk_conditions
+
 def generate_address():
     """
     Generates a random address contemplating the following fields:
@@ -190,12 +238,12 @@ def generate_address():
     if province == "Ceuta" or province == "Melilla":
         city_province_community = f"{province}, {province}, Ciudad autónoma de {province}."
     else:
-        city_province_community = f"{city}, {province}, {community}."
+        city_province_community = f"{city}, {province}, {community}"
     
     landline_phone = f"9{phone_prefixes[province_number]}{random.randint(0, 999999):06}"
     mobile_phone = f"6{phone_prefixes[province_number]}{random.randint(0, 999999):06}"
 
-    return f"Calle: {street}, {number}{apt}\nCiudad: {city_province_community}\nCódigo postal: {postal_code}.\nTeléfono fijo: {landline_phone}\nTelefono móvil: {mobile_phone}"
+    return f"Domicilio: {street}, {number}{apt}\nCiudad: {city_province_community}\nCódigo postal: {postal_code}\nTeléfono fijo: {landline_phone}\nTelefono móvil: {mobile_phone}"
 
 def remove_special_characters(text):
     # Normalize the text to decompose the characters
@@ -249,22 +297,25 @@ def generate_person():
     - Name
     - Surname
     - Birthdate
+    - Gender
+    - DNI
+    - NHC
     - Email
     """
-    gender = random.choice(["M", "F"])
+    gender = random.choice(["H", "M"])
 
-    name = random.choice(female_names) if (gender == "F") else random.choice(male_names)
+    name = random.choice(female_names) if (gender == "M") else random.choice(male_names)
     surname1 = random.choice(surname)
     surname2 = random.choice(surname)
     
     birthdate = f"{random.randint(1, 31):02}/{random.randint(1, 12):02}/{random.randint(1950, 2000)}"
-    
+    nhc = f"{random.randint(0, 9999999):07d}"
     number_dni = random.randint(10000000, 99999999)
     letter_dni = dni_letters[number_dni % 23]
     dni = f"{number_dni}{letter_dni}"
     mail = generate_email(name, surname1, surname2)
 
-    return f"Nombre: {name} {surname1} {surname2}\nFecha de nacimiento: {birthdate}\nDNI: {dni}\nEmail: {mail}"
+    return f"Nombre: {name} {surname1} {surname2}\nNHC: {nhc}\nFecha de nacimiento: {birthdate}\nGénero: {gender}\nDNI: {dni}\nEmail: {mail}"
 
 def generate_persons_txt(n):
     """
@@ -276,6 +327,7 @@ def generate_persons_txt(n):
     - Address
     - Landline phone
     - Mobile phone
+    - Risk conditions (if any)
     """
 
     output_dir = "data/"
@@ -290,11 +342,21 @@ def generate_persons_txt(n):
             f.write(generate_person())
             f.write("\n")
             f.write(generate_address())
+            f.write("\n")
+            f.write(generate_risk_condition())
 
 if __name__ == "__main__":
     print("This is a Python script to generate random persons with their information.")
     print("How many persons do you want to generate?")
-    n = int(input())
+    
+    try:
+        n = int(input())
+    except KeyboardInterrupt:
+        print("\nBye!")
+        exit(1)
+    except ValueError:
+        print("The number of persons must be an integer.")
+        exit(1)
     if n <= 0:
         print("The number of persons must be greater than 0.")
         exit(1)
