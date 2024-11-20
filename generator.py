@@ -1,5 +1,7 @@
 import random
 import os
+import string
+import unicodedata
 
 # Provinces of Spain and autonomous cities
 provinces = [ "Orense", "Pontevedra", "La Coruña", "Lugo",
@@ -20,7 +22,7 @@ provinces = [ "Orense", "Pontevedra", "La Coruña", "Lugo",
 # Autonomous communities
 communities = (4 * ["Galicia"] + 3 * ["Pais Vasco"] + 3 * ["Aragón"] + 4 * ["Cataluña"] + 3 * ["Comunidad Valenciana"] + 4 * ["Islas Baleares"]
                + 9 * ["Castilla y León"] + 5 * ["Castilla-La Mancha"] + 2 * ["Extremadura"] + 8 * ["Andalucía"] + 2 * ["Canarias"]
-               + ["Asturias"] + ["Cantabria"] + ["Navarra"] + ["La Rioja"] + ["Madrid"] + ["Región de Murcia"])
+               + ["Asturias"] + ["Cantabria"] + ["Navarra"] + ["La Rioja"] + ["Madrid"] + ["Región de Murcia"] + 2 * [""])
 
 # Telephone prefixes
 phone_prefixes = [ "88", "86", "81", "82",
@@ -151,7 +153,11 @@ surname = ["García", "Rodríguez", "González", "Fernández", "López", "Martí
 
 dni_letters = "TRWAGMYFPDXBNJZSQVHLCKE"
 
-mail_domains = ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com", "icloud.com"]
+conectors = ["", ".", "_", "-"]
+mail_domains = [
+    "gmail.com", "hotmail.com", "yahoo.com", "outlook.com", "icloud.com", "aol.com", "protonmail.com",
+    "mail.com", "zoho.com",  "gmx.com", "us.es", "ual.es", "uhu.es", "ub.edu", "ucm.es"
+]
 
 def generate_address():
     """
@@ -170,6 +176,10 @@ def generate_address():
 
     street = random.choice(streets)
     number = random.randint(1, 100)
+    # Generate a random apartment number or letter
+    apt_num = f'D. {random.randint(1, 10)} "{random.choice(string.ascii_uppercase)}"'
+    # Choose if the apartment number is included or not
+    apt = random.choice(["", f", {apt_num}"])
     city = random.choice(municipalities)
 
     postal_code = f"{postal_code_prefixes[province_number]}{random.randint(0, 999):03}"
@@ -185,7 +195,53 @@ def generate_address():
     landline_phone = f"9{phone_prefixes[province_number]}{random.randint(0, 999999):06}"
     mobile_phone = f"6{phone_prefixes[province_number]}{random.randint(0, 999999):06}"
 
-    return f"Calle: {street}, {number}\nCiudad: {city_province_community}\nCódigo postal: {postal_code}.\nTeléfono fijo: {landline_phone}\nTelefono móvil: {mobile_phone}"
+    return f"Calle: {street}, {number}{apt}\nCiudad: {city_province_community}\nCódigo postal: {postal_code}.\nTeléfono fijo: {landline_phone}\nTelefono móvil: {mobile_phone}"
+
+def remove_special_characters(text):
+    # Normalize the text to decompose the characters
+    normalized_text = unicodedata.normalize('NFD', text)
+    # Remove the accents and replace 'ñ' by 'n'
+    text_without_accents = ''.join(
+        c if unicodedata.category(c) != 'Mn' else '' for c in normalized_text
+    ).replace("ñ", "n").replace("Ñ", "N")
+    return text_without_accents
+
+def generate_email(name, surname1, surname2):
+    '''
+    Generates a random email based on the name and surnames of a person
+    '''
+    use_name = random.choice([True, True, False])
+    use_surname1 = random.choice([True, True, False])
+    use_surname2 = random.choice([True, True, False])
+
+    email_parts = []
+
+    # Case of random email
+    if not use_name and not use_surname1 and not use_surname2:
+        email_parts.append(''.join(random.choices(string.ascii_letters + string.digits, k=random.randint(5, 15))))
+    
+    # Case of using name, surname1 or/and surname2
+    else:
+        if use_name:
+            email_parts.append(name.lower())
+        if use_surname1:
+            if use_name:
+                email_parts.append(random.choice(conectors))
+            email_parts.append(surname1.lower())
+        if use_surname2:
+            if use_name or use_surname1:
+                email_parts.append(random.choice(conectors))
+            email_parts.append(surname2.lower())
+
+    # Case of adding a random number (33% of probability)
+    if random.choice([True, False, False]):
+        email_parts.append(str(random.randint(0, 2025)))
+
+    email = ''.join(email_parts) + f"@{random.choice(mail_domains)}"
+    email = email.replace(" ", "")
+    email = remove_special_characters(email)
+    
+    return email
 
 def generate_person():
     """
@@ -206,7 +262,7 @@ def generate_person():
     number_dni = random.randint(10000000, 99999999)
     letter_dni = dni_letters[number_dni % 23]
     dni = f"{number_dni}{letter_dni}"
-    mail = f"{name.lower()}.{surname1.lower()}@{random.choice(mail_domains)}"
+    mail = generate_email(name, surname1, surname2)
 
     return f"Nombre: {name} {surname1} {surname2}\nFecha de nacimiento: {birthdate}\nDNI: {dni}\nEmail: {mail}"
 
