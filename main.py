@@ -21,8 +21,8 @@ def generate_people_txt(n):
         province_number, address = generate_address()
         contacts = generate_contacts(name, surname1, surname2, province_number)
         health_record = generate_health_record()
-        id = random.randint(0, 999999)
-        with open(f"{output_dir}{id}.txt", "w") as f:
+        namefile = f'{output_dir}{random.randint(0, 999999):02}.txt'
+        with open(namefile, "w") as f:
             f.write(identification)
             f.write(address)
             f.write(contacts)
