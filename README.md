@@ -1,12 +1,14 @@
 # Synthetic-Patient-Generation 🇪🇸
-
-This repository contains a Python script (`generator.py`) that generates synthetic information for Spanish residents, including names, surnames, birthdates, addresses, emails, and phone numbers. The generated information is saved in text files within the `data/` directory.
+This repository contains a Python script (`main.py`) that generates synthetic information for Spanish residents, including names, surnames, birthdates, addresses, emails, and phone numbers. The generated information is saved in text files within the output directory.
 
 ## Files
-
-- `generator.py`: Main script that generates the synthetic information.
-- `data/`: Directory where the generated text files are stored.
-- `README.md`: This repository description file.
+- `main.py`: The main script that generates synthetic information.
+- `data`: A directory that contains data used for generating synthetic information.
+- `generator`: A directory that contains the functions for generating different parts of the synthetic information.
+- `utils`: A directory that contains utility functions.
+- `output`: A directory where the generated files are saved.
+- `README.md`: This file.
+- `LICENSE`: The license file.
 
 ## Usage
 
@@ -14,25 +16,23 @@ To run the script and generate synthetic information, follow these steps:
 
 1. Open a terminal in the repository directory.
 2. Run the script with the following command:
-
-```sh
-python3 generator.py
-```
 3. Enter the number of persons you want to generate.
 
 ## Example Output
 A generated file may have the following format:
     
 ```plaintext
-Nombre: Pablo Flores Lozano
-Fecha de nacimiento: 20/05/1972
-DNI: 21536039N
-Email: pablo.flores@hotmail.com
-Calle: Calle de la Alameda, 67
-Ciudad: Móstoles, Zaragoza, Aragón.
-Código postal: 50583.
-Teléfono fijo: 976242701
-Telefono móvil: 676750436
+Nombre: José Antonio Rubio Jiménez
+DNI: 96373212S
+Fecha de nacimiento: 06/10/1957
+Género: H
+Domicilio: Calle de Arganzuela 52, 3 "Y"
+Ciudad: Bormujos, Huelva, Andalucía
+Código postal: 21473
+Email: joseantonio_rubio-jimenez@ual.es
+Teléfono fijo: +34 959 32 91 12
+Teléfono móvil: +34 659 46 43 13
+NHS: 9987618
 ```
 
 ## Dependencies
