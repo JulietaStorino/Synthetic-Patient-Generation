@@ -1,5 +1,5 @@
 import random
-from data.identification import female_names, male_names, surnames, dni_letters
+from data.identification import female_names, male_names, surnames, dni_letters, medical_signs
 
 
 def generate_gender():
@@ -31,7 +31,13 @@ def generate_birthdate():
     '''
     return f"{random.randint(1, 31):02}/{random.randint(1, 12):02}/{random.randint(1950, 2000)}"
 
-def generate_identification():
+def generate_medical_registration_number():
+    '''
+    Generates a random medical registration number
+    '''
+    return f'{random.choice(medical_signs)} {random.randint(100000000, 999999999):09}'
+
+def generate_identification_person():
     '''
     Return the gender and a string with the following fields:
     - Name, surname1 and surname2
@@ -46,3 +52,18 @@ def generate_identification():
     birthdate = generate_birthdate()
 
     return name, surname1, surname2, dni, birthdate, gender
+
+def generate_identification_doctor():
+    '''
+    Return the gender and a string with the following fields:
+    - Name, surname1 and surname2
+    - Gender
+    - Medical registration number
+    '''
+
+    gender = generate_gender()
+    name, surname1, surname2 = generate_name(gender)
+    medical_registration_number = generate_medical_registration_number()
+    
+
+    return name, surname1, surname2, gender, medical_registration_number

@@ -1,11 +1,11 @@
-from generator.identification import generate_identification
+from generator.identification import generate_identification_person
 from generator.address import generate_address
 from generator.contacts import generate_contacts
 from generator.health_record import generate_health_record
 
 class Identification():
     def __init__(self):
-        self.name, self.surname1, self.surname2, self.dni, self.birthdate, self.gender = generate_identification()
+        self.name, self.surname1, self.surname2, self.dni, self.birthdate, self.gender = generate_identification_person()
     
     def identification_to_string(self):
         return f"Nombre: {self.name} {self.surname1} {self.surname2}\nDNI: {self.dni}\nFecha de nacimiento: {self.birthdate}\nGénero: {self.gender}\n"

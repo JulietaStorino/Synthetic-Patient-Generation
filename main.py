@@ -1,6 +1,7 @@
 import random
 import os
 from generator.person import Person
+from generator.healthcare import HealthRecord
 
 def generate_people_txt(n):
     """
@@ -15,10 +16,15 @@ def generate_people_txt(n):
 
     for _ in range(n):
         person_created = Person()
+        health_record = HealthRecord()
+
         namefile = f'{output_dir}{random.randint(0, 999999):06}.txt'
         with open(namefile, "w") as f:
-            f.write("Datos del paciente:\n")
+            f.write("Datos del paciente.\n")
             f.write(person_created.person_to_string())
+            f.write("\n")
+            f.write("Datos asistenciales.\n")
+            f.write(health_record.health_record_to_string())
 
 if __name__ == "__main__":
     print("This is a Python script to generate random people with their information.")
