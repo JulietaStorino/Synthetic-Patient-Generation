@@ -18,3 +18,16 @@ hospitals = [
     "Hospital Universitario Nuestra Señora de Candelaria", "Hospital Universitario Puerto Real", "Complejo Hospitalario La Mancha Centro",
     "Hospital Universitario de la Princesa"
 ]
+
+# List of 9 medical institutions
+medical_institutions = [
+    "Instituto Universitario de Oftalmobiología Aplicada (IOBA) Campus Miguel Delibes, P.º de Belén, 17, Edificio IOBA, 47011 Valladolid, España",
+    "Instituto Maimónides de Investigación Biomédica de Córdoba (IMIBIC) Hospital Universitario Reina Sofía, Edificio IMIBIC, Av. Menéndez Pidal, s/n, Poniente Sur, 14004 Córdoba, España",
+    "Instituto de Investigación Sanitaria del Hospital 12 de Octubre (Imas12) nstituto de Investigación Hospital 12 de Octubre Centro de Actividades Ambulatorias, 6ª Planta Bloque D Avda. de Córdoba, s/n 28041 - MADRID",
+    "Instituto de Investigación Biomédica en Red de Enfermedades Raras (CIBERER) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
+    "Instituto de Investigación Biomédica en Red de Salud Mental (CIBERSAM) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
+    "Instituto de Investigación Biomédica en Red de Enfermedades Cardiovasculares (CIBERCV) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
+    "Instituto de Investigación Biomédica en Red de Enfermedades Hepáticas y Digestivas (CIBERehd) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
+    "Instituto de Investigación Biomédica en Red de Enfermedades Neurodegenerativas (CIBERNED) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",    
+    "Instituto de Investigación Biomédica en Red de Enfermedades Infecciosas (CIBERINFEC) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
+]

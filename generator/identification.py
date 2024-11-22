@@ -1,4 +1,5 @@
 import random
+import data.assistance
 import data.identification
 
 def generate_gender():
@@ -40,6 +41,12 @@ def generate_medical_registration_number():
     '''
     return f'{random.choice(data.identification.medical_signs)} {random.randint(100000000, 999999999):09}'
 
+def generate_institution():
+    '''
+    Generates a random institution from the list of institutions
+    '''
+    return random.choice(data.assistance.medical_institutions)
+
 def generate_identification_person():
     '''
     Return the gender and a string with the following fields:
@@ -67,6 +74,6 @@ def generate_identification_doctor():
     gender = generate_gender()
     name, surname1, surname2 = generate_name(gender)
     medical_registration_number = generate_medical_registration_number()
-    
+    institution = generate_institution()
 
-    return name, surname1, surname2, gender, medical_registration_number
+    return name, surname1, surname2, gender, medical_registration_number, institution

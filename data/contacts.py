@@ -1,8 +1,13 @@
+# Some conects to generate fake mail addresses
 conectors = ["", ".", "_", "-"]
 
 mail_domains = [
+    # Most common mail domains
     "gmail.com", "hotmail.com", "yahoo.com", "outlook.com", "icloud.com", "aol.com", "protonmail.com",
-    "mail.com", "zoho.com",  "gmx.com", "us.es", "ual.es", "uhu.es", "ub.edu", "ucm.es"
+    # Most common university mail domains in Spain
+    "us.es", "ual.es", "uhu.es", "ub.edu", "ucm.es", "udc.es", "uca.es",
+    # Some medical institutions mail domains
+    "ioba.med.uva.es", "imibic.org", "h12o.es", "ciberer.es", "ciberisciii.es", "salud.madrid.org", "ciberehd.org", "ciberned.es", "isciii.es",
 ]
 
 # Telephone prefixes in order of appearance in the provinces list
