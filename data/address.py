@@ -27,8 +27,9 @@ postal_code_prefixes = [
   "45", "13", "19", "16", "02",
   "10", "06",
   "21", "41", "11", "29", "14", "23", "18", "04",
-  "35", "38"
-  "33", "39", "31", "26", "28", "30", "52", "51" # Autonomous cities
+  "35", "38",
+  "33", "39", "31", "26", "28", "30",
+  "52", "51" # Autonomous cities
 ]
 
 # Autonomous communities in order of appearance in the provinces list
