@@ -1,5 +1,4 @@
 import random
-import string
 from data.address import streets, municipalities, postal_code_prefixes, provinces, communities
 
 def generate_province_number():

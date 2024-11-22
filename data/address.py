@@ -10,7 +10,7 @@ provinces = [
   "Toledo", "Ciudad Real", "Guadalajara", "Cuenca", "Albacete",
   "Cáceres", "Badajoz",
   "Huelva", "Sevilla", "Cádiz", "Málaga", "Córdoba", "Jaén", "Granada", "Almería",
-  "Las Palmas", "Santa Cruz de Tenerife"
+  "Las Palmas", "Santa Cruz de Tenerife",
   "Asturias", "Cantabria", "Navarra", "La Rioja", "Madrid", "Región de Murcia",
   "Ceuta", "Melilla" # Autonomous cities
 ]
