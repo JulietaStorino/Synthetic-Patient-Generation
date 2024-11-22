@@ -35,7 +35,7 @@ class HealthRecord():
         list = self.risk_conditions_list.append(self.high_risk_profession) if self.have_risk_profession else self.risk_conditions_list
         if not list:
             return f"NHS: {self.nhc}\n"
-        return f"NHS: {self.nhc}\nRisk conditions: {', '.join(list)}\n"
+        return f"NHS: {self.nhc}\nCondiciones de riesgo: {', '.join(list)}\n"
 
 class Person():
     def __init__(self):

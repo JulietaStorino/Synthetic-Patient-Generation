@@ -1,6 +1,6 @@
-import random
+from random import choice
 from data.health_record import risk_diseases, high_risk_professions
-
+from utils.utils import boolean_with_probability, generate_n_digits
 def generate_risk_condition():
     """
     Generates risk conditions randomly from a list of common diseases and health conditions.
@@ -9,17 +9,17 @@ def generate_risk_condition():
     high_risk_profession = ''
     have_risk_profession = False
 
-    if random.choice([True, False]):
-        number_conditions = random.choice([1, 1, 2, 2, 3])
+    if boolean_with_probability(.5):
+        number_conditions = choice([1, 1, 2, 2, 3])
 
-        have_risk_profession = random.choice([True, False, False])
+        have_risk_profession = boolean_with_probability(.5)
 
         if have_risk_profession:
-            high_risk_profession = random.choice(high_risk_professions)
+            high_risk_profession = choice(high_risk_professions)
             number_conditions -= 1
 
         while number_conditions > 0:
-            risk_conditions_list.append(random.choice(risk_diseases))
+            risk_conditions_list.append(choice(risk_diseases))
             number_conditions -= 1
     
     return have_risk_profession, high_risk_profession, risk_conditions_list
@@ -28,7 +28,7 @@ def generate_nhc():
     '''
     Generates a random NHC (Número de Historia Clínica - Health Record Number)
     '''
-    return f"{random.randint(0, 9999999):07d}"
+    return generate_n_digits(7)
 
 def generate_health_record():
     """

@@ -1,11 +1,12 @@
-import random
+from random import randint, choice
 from data.address import streets, municipalities, postal_code_prefixes, provinces, communities
+from utils.utils import generate_n_digits, boolean_with_probability
 
 def generate_province_number():
     """
     Generates a random province number
     """
-    return random.randint(0, len(provinces) - 1)
+    return randint(0, len(provinces) - 1)
 
 def generate_city(province_number):
     """
@@ -16,7 +17,7 @@ def generate_city(province_number):
     if province == "Ceuta" or province == "Melilla":
         city = f"Ciudad autónoma de {province}."
     else:
-        city = random.choice(municipalities)
+        city = choice(municipalities)
         
     community = communities[province_number]
 
@@ -26,8 +27,8 @@ def generate_street():
     """
     Generates a random street and number from the list of streets in Spain
     """
-    street = random.choice(streets)
-    number = random.randint(1, 100)
+    street = choice(streets)
+    number = randint(1, 100)
 
     return street, number
 
@@ -35,9 +36,9 @@ def generate_apt():
     """
     Generates a random apartment floor (number) and door (letter)
     """
-    is_apt = random.choice([True, False, False])
-    apt_floor = random.randint(1, 10)
-    apt_door = random.choice(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'])
+    is_apt = boolean_with_probability(.4)
+    apt_floor = randint(1, 10)
+    apt_door = choice(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'])
 
     return is_apt, apt_floor, apt_door
 
@@ -45,7 +46,7 @@ def generate_postal_code(index):
     """
     Generates a random postal code based on the province index
     """
-    return f"{postal_code_prefixes[index]}{random.randint(0, 999):03}"
+    return f"{postal_code_prefixes[index]}{generate_n_digits(3)}"
 
 def generate_address():
     """

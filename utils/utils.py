@@ -1,4 +1,5 @@
 import unicodedata
+import random
 
 def remove_special_characters(text):
     '''
@@ -12,3 +13,16 @@ def remove_special_characters(text):
     ).replace("ñ", "n").replace("Ñ", "N")
     
     return text_without_accents.replace(" ", "")
+
+def generate_n_digits(n):
+    """
+    Return a string with n random digits
+    """
+    n_times_nine = int("9" * n)
+    return f"{random.randint(0, n_times_nine):0{n}d}"
+
+def boolean_with_probability(probability):
+    '''
+    Returns True or False with a given probability
+    '''
+    return random.random() < probability
