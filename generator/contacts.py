@@ -1,7 +1,7 @@
 import random
 import string
 from data.contacts import mail_domains, conectors, phone_prefixes
-from utils.contacts import remove_special_characters
+from utils.remove_special_characters import remove_special_characters
 
 def generate_email(name, surname1, surname2):
     '''
@@ -69,6 +69,4 @@ def generate_contacts(name, surname1, surname2, province_number):
     
     use_fax = random.choice([True, False, False, False])
 
-    if use_fax:
-        return f"Email: {email}\nTeléfono fijo: {landline_phone}\nNúmero de fax: {fax}\n"
-    return f"Email: {email}\nTeléfono fijo: {landline_phone}\nTeléfono móvil: {mobile_phone}\n"
+    return email, landline_phone, mobile_phone, fax, use_fax

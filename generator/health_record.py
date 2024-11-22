@@ -6,19 +6,23 @@ def generate_risk_condition():
     Generates risk conditions randomly from a list of common diseases and health conditions.
     """
     risk_conditions_list = []
+    high_risk_profession = ''
+    have_risk_profession = False
 
     if random.choice([True, False]):
         number_conditions = random.choice([1, 1, 2, 2, 3])
 
-        if random.choice([True, False]):
-            risk_conditions_list.append(random.choice(high_risk_professions))
+        have_risk_profession = random.choice([True, False, False])
+
+        if have_risk_profession:
+            high_risk_profession = random.choice(high_risk_professions)
             number_conditions -= 1
 
         while number_conditions > 0:
             risk_conditions_list.append(random.choice(risk_diseases))
             number_conditions -= 1
     
-    return risk_conditions_list
+    return have_risk_profession, high_risk_profession, risk_conditions_list
 
 def generate_nhc():
     '''
@@ -33,9 +37,6 @@ def generate_health_record():
     - Risk conditions (if any)
     """
     nhc = generate_nhc()
-    risk_conditions = generate_risk_condition()
+    have_risk_profession, high_risk_profession, risk_conditions_list = generate_risk_condition()
 
-    if not risk_conditions:
-        return f"NHS: {nhc}\n"
-    
-    return f"NHS: {nhc}\nRisk conditions: {', '.join(risk_conditions)}\n"
+    return nhc, have_risk_profession, high_risk_profession, risk_conditions_list

@@ -45,5 +45,4 @@ def generate_identification():
     dni = generate_dni()
     birthdate = generate_birthdate()
 
-    return name, surname1, surname2, f"Nombre: {name} {surname1} {surname2}\nDNI: {dni}\nFecha de nacimiento: {birthdate}\nGénero: {gender}\n"
-
+    return name, surname1, surname2, dni, birthdate, gender

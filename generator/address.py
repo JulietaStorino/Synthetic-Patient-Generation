@@ -36,10 +36,11 @@ def generate_apt():
     """
     Generates a random apartment floor (number) and door (letter)
     """
-    floor = random.randint(1, 10)
-    door = random.choice(string.ascii_uppercase)
+    is_apt = random.choice([True, False, False])
+    apt_floor = random.randint(1, 10)
+    apt_door = random.choice(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'])
 
-    return floor, door
+    return is_apt, apt_floor, apt_door
 
 def generate_postal_code(index):
     """
@@ -49,7 +50,7 @@ def generate_postal_code(index):
 
 def generate_address():
     """
-    Generates a random string with an address contemplating the following fields:
+    Generates a random address contemplating the following fields:
     - Street and number
     - Apartment floor and door (optional)
     - City, province and community
@@ -59,10 +60,7 @@ def generate_address():
     province_number = generate_province_number()
     city, province, community = generate_city(province_number)
     street, number = generate_street()
-    apt_floor, apt_door = generate_apt()
+    is_apt, apt_floor, apt_door = generate_apt()
     postal_code = generate_postal_code(province_number)
-
-    # Choose if the apartment number is included or not
-    apt = random.choice(["", f', {apt_floor} "{apt_door}"'])
         
-    return province_number, f"Domicilio: {street} {number}{apt}\nCiudad: {city}, {province}, {community}\nCódigo postal: {postal_code}\n"
+    return province_number, city, province, community, street, number, is_apt, apt_floor, apt_door, postal_code
