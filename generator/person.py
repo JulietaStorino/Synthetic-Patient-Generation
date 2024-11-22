@@ -29,13 +29,16 @@ class Contacts():
     
 class HealthRecord():
     def __init__(self):
-        self.nhc, self.have_risk_profession, self.high_risk_profession, self.risk_conditions_list = generate_health_record()
+        self.nhc, self.have_risk_profession, self.high_risk_profession, self.risk_conditions_list, self.have_nass, self.nass = generate_health_record()
 
     def health_record_to_string(self):
-        list = self.risk_conditions_list.append(self.high_risk_profession) if self.have_risk_profession else self.risk_conditions_list
-        if not list:
-            return f"NHS: {self.nhc}\n"
-        return f"NHS: {self.nhc}\nCondiciones de riesgo: {', '.join(list)}\n"
+        conditions_list = self.risk_conditions_list.append(self.high_risk_profession) if self.have_risk_profession else self.risk_conditions_list
+        health_record = f"NHC: {self.nhc}\n"
+        if self.have_nass:
+            health_record += f"NASS: {self.nass}\n"
+        if conditions_list:
+            health_record += f"Condiciones de riesgo: {', '.join(conditions_list)}\n"
+        return health_record
 
 class Person():
     def __init__(self):

@@ -30,6 +30,13 @@ def generate_nhc():
     '''
     return generate_n_digits(7)
 
+def generate_nass():
+   '''
+   Generates a random NASS (Número de Afiliación a la Seguridad Social - Social Security Affiliation Number) and if the person has it
+   '''
+   have_nass = boolean_with_probability(.7)
+   return have_nass, generate_n_digits(12)
+
 def generate_health_record():
     """
     Generates a health record with the following fields:
@@ -37,6 +44,7 @@ def generate_health_record():
     - Risk conditions (if any)
     """
     nhc = generate_nhc()
+    have_nass, nass = generate_nass()
     have_risk_profession, high_risk_profession, risk_conditions_list = generate_risk_condition()
 
-    return nhc, have_risk_profession, high_risk_profession, risk_conditions_list
+    return nhc, have_risk_profession, high_risk_profession, risk_conditions_list, have_nass, nass
