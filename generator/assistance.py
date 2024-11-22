@@ -1,5 +1,6 @@
 from random import randint, choice
 from data.assistance import hospitals
+from utils.utils import generate_n_digits, boolean_with_probability
 
 def generate_assistance_date():
     '''
@@ -13,13 +14,24 @@ def generate_assistance_hospital():
     '''
     return choice(hospitals)
 
+def generate_episode():
+    '''
+    Generates a random episode
+    '''
+    have_episode = boolean_with_probability(.7)
+    episode = generate_n_digits(8)
+    
+    return have_episode, episode
+
 def generate_assistance():
     '''
     Generates a random assistance with the following fields:
     - Assistance date
+    - Episode
     - Hospital
     '''
     assistance_date = generate_assistance_date()
+    have_episode, episode = generate_episode()
     hospital = generate_assistance_hospital()
 
-    return assistance_date, hospital
+    return assistance_date, have_episode, episode, hospital
