@@ -5,10 +5,10 @@ from generator.health_record import generate_health_record
 
 class Identification():
     def __init__(self):
-        self.name, self.surname1, self.surname2, self.dni, self.birthdate, self.gender = generate_identification_person()
+        self.name, self.surname1, self.surname2, self.dni, self.birthdate, self.gender, self.gender_mention = generate_identification_person()
     
     def identification_to_string(self):
-        return f"Nombre: {self.name} {self.surname1} {self.surname2}\nDNI: {self.dni}\nFecha de nacimiento: {self.birthdate}\nGénero: {self.gender}\n"
+        return f"Nombre: {self.name} {self.surname1} {self.surname2}\nDNI: {self.dni}\nFecha de nacimiento: {self.birthdate}\nGénero: {self.gender_mention}\n"
 
 class Address():
     def __init__(self):
