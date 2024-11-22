@@ -12,12 +12,17 @@ class Doctor():
     
 class Assistance():
     def __init__(self):
-        self.assistance_date, self.have_episode, self.episode, self.hospital = generate_assistance()
+        self.assistance_date, self.have_episode, self.episode, self.hospital, self.health_center, self.is_hospital = generate_assistance()
 
     def assistance_to_string(self):
+        assistance = f"Fecha de ingreso: {self.assistance_date}\n"
         if self.have_episode:
-            return f"Fecha de ingreso: {self.assistance_date}\nEpisodio: {self.episode}\nHospital: {self.hospital}\n"
-        return f"Fecha de ingreso: {self.assistance_date}\nHospital: {self.hospital}\n"
+            assistance += f"Episodio: {self.episode}\n"
+        if self.is_hospital:
+            assistance += f"Hospital: {self.hospital}\n"
+        else:
+            assistance += f"Centro de salud: {self.health_center}\n"
+        return assistance
     
 class HealthRecord():
     def __init__(self):

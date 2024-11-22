@@ -1,4 +1,4 @@
-# 50 hospitals in Spain
+# This must be modified using https://regcess.mscbs.es/regcessWeb/inicioBuscarCentrosAction.do
 hospitals = [
     "Hospital Universitario Fundació Jiménez Díaz", "Hospital Universitario La Paz", "Hospital Clínic Barcelona",
     "Hospital Universitario 12 de Octubre", "Hospital Universitari Vall d'Hebron", "Hospital Universitari i Politècnic La Fe",
@@ -17,6 +17,22 @@ hospitals = [
     "Hospital Virgen de la Luz", "Complejo Hospitalario Universitario de Santiago", "Hospital GaldaKao - Usansolo",
     "Hospital Universitario Nuestra Señora de Candelaria", "Hospital Universitario Puerto Real", "Complejo Hospitalario La Mancha Centro",
     "Hospital Universitario de la Princesa"
+]
+
+# This must be modified using https://regcess.mscbs.es/regcessWeb/inicioBuscarCentrosAction.do
+health_centers = [
+    "Centro de Salud Aluche", "Centro de Salud Alcalá de Henares", "Centro de Salud Aranjuez", "Centro de Salud Arganzuela",
+    "Centro de Salud Barajas", "Centro de Salud Carabanchel", "Centro de Salud Centro", "Centro de Salud Chamartín",
+    "Centro de Salud Ciudad Lineal", "Centro de Salud Conde de Casal", "Centro de Salud Coslada", "Centro de Salud Delicias",
+    "Centro de Salud Fuencarral", "Centro de Salud Getafe", "Centro de Salud Latina", "Centro de Salud Ronda", "Centro de Salud Tetuán",
+    "Centro de Salud Moratalaz", "Centro de Salud Parla", "Centro de Salud Puente de Vallecas", "Centro de Salud San Blas",
+    "Centro de Salud Vicálvaro", "Centro de Salud Villaverde", "Centro de Salud Alcorcón", "Centro de Salud Arganda del Rey",
+    "Centro de Salud Boadilla del Monte", "Centro de Salud Collado Villalba", "Centro de Salud Fuenlabrada",
+    "Centro de Salud Leganés", "Centro de Salud Majadahonda", "Centro de Salud Móstoles", "Centro de Salud Pozuelo de Alarcón",
+    "Centro de Salud San Sebastián de los Reyes", "Centro de Salud Torrejón de Ardoz", "Centro de Salud Valdemoro",
+    "Centro de Salud Alhaurín de la Torre", "Centro de Salud Benalmádena", "Centro de Salud Fuengirola", "Centro de Salud Marbella",
+    "Centro de Salud Málaga Este", "Centro de Salud Málaga Norte", "Centro de Salud Málaga Oeste", "Centro de Salud Málaga Sur",
+    "Centro de Salud Sevilla Este", "Centro de Salud Sevilla Norte", "Centro de Salud Sevilla Oeste", "Centro de Salud Sevilla Sur"
 ]
 
 # List of 9 medical institutions

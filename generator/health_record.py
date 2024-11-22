@@ -19,7 +19,9 @@ def generate_risk_condition():
             number_conditions -= 1
 
         while number_conditions > 0:
-            risk_conditions_list.append(choice(risk_diseases))
+            risk_disease = choice(risk_diseases)
+            if risk_disease not in risk_conditions_list:
+                risk_conditions_list.append(risk_disease)
             number_conditions -= 1
     
     return have_risk_profession, high_risk_profession, risk_conditions_list
