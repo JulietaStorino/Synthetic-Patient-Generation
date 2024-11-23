@@ -15,7 +15,7 @@ def generate_city(province_number):
     province = provinces[province_number]
     
     if province == "Ceuta" or province == "Melilla":
-        city = f"Ciudad autónoma de {province}."
+        city = f"Ciudad autónoma de {province}"
     else:
         city = choice(municipalities)
         

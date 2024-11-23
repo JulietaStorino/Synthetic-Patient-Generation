@@ -9,7 +9,7 @@ def generate_gender():
     '''
     gender = choice(["M", "F"]) # M: Male, F: Female
 
-    if (gender == "M"):
+    if gender == "M":
         return gender, choice(data.identification.male_gender)
     return gender, choice(data.identification.female_gender)
 
@@ -42,11 +42,19 @@ def generate_medical_registration_number():
     '''
     return f'{choice(data.identification.medical_signs)} {generate_n_digits(9)}'
 
-def generate_institution():
+def generate_institution(gender):
     '''
-    Generates a random institution from the list of institutions
+    Generates a random institution from the list of institutions and returns it with its id
     '''
-    return choice(data.assistance.medical_institutions)
+    id = randint(0, len(data.assistance.medical_institutions) - 1)
+    institution = data.assistance.medical_institutions[id]
+    healthcare_role_id = id * 3 + randint(0, 2)
+    healthcare_role = data.assistance.healthcare_roles[healthcare_role_id]
+    if gender == "F":
+        healthcare_role = healthcare_role.replace("logo", "loga")
+        healthcare_role = healthcare_role.replace("Investigador", "Investigadora")
+        healthcare_role = healthcare_role.replace("Clínico", "Clínica")
+    return healthcare_role, institution
 
 def generate_identification_person():
     '''
@@ -56,7 +64,6 @@ def generate_identification_person():
     - Birthdate
     - Gender
     '''
-
     gender, gender_mention = generate_gender()
     name, surname1, surname2 = generate_name(gender)
     dni = generate_dni()
@@ -70,11 +77,13 @@ def generate_identification_doctor():
     - Name, surname1 and surname2
     - Gender
     - Medical registration number
+    - Healthcare role
+    - Institution
     '''
 
-    gender = generate_gender()
+    gender, _ = generate_gender()
     name, surname1, surname2 = generate_name(gender)
     medical_registration_number = generate_medical_registration_number()
-    institution = generate_institution()
+    healthcare_role, institution = generate_institution(gender)
 
-    return name, surname1, surname2, gender, medical_registration_number, institution
+    return name, surname1, surname2, gender, medical_registration_number, healthcare_role, institution

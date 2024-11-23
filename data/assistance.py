@@ -47,3 +47,16 @@ medical_institutions = [
     "Instituto de Investigación Biomédica en Red de Enfermedades Neurodegenerativas (CIBERNED) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",    
     "Instituto de Investigación Biomédica en Red de Enfermedades Infecciosas (CIBERINFEC) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
 ]
+
+# List of three healthcare roles for each medical institution
+healthcare_roles = [
+    "Oftalmólogo Especialista en Retina y Vítreo", "Residente de 3° año en Oftalmología", "Investigador Principal en Optometría Clínica",
+    "Endocrinólogo Especialista en Diabetes", "Investigador Clínico en Medicina Interna", "Residente de 4° año en Endocrinología",
+    "Cardiólogo de Unidad de Cuidados Intensivos", "Neurólogo Investigador en Trastornos Cognitivos", "Residente de 5° año en Urología",
+    "Especialista en Genética Médica", "Investigador Clínico en Síndromes Raros", "Residente de 2° año en Pediatría",
+    "Psiquiatra Especialista en Trastornos de Ansiedad", "Neuropsicólogo Clínico Investigador", "Residente de 3° año en Psiquiatría",
+    "Cardiólogo Especialista en Electrofisiología", "Investigador Clínico en Insuficiencia Cardíaca", "Residente de 4° año en Cardiología",
+    "Gastroenterólogo Especialista en Enfermedades Hepáticas", "Investigador Clínico en Enfermedades Digestivas", "Residente de 3° año en Gastroenterología", 
+    "Neurólogo Especialista en Alzheimer", "Investigador Principal en Parkinson", "Residente de 5° año en Neurología",
+    "Especialista en Enfermedades Infecciosas", "Investigador Clínico en Epidemiología", "Residente de 4° año en Medicina Interna"
+]

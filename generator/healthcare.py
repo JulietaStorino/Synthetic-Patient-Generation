@@ -3,12 +3,12 @@ from generator.assistance import generate_assistance
 
 class Doctor():
     def __init__(self):
-        self.name, self.surname1, self.surname2, self.gender, self.medical_registration_number, self.institution = generate_identification_doctor()
+        self.name, self.surname1, self.surname2, self.gender, self.medical_registration_number, self.healthcare_role, self.institution = generate_identification_doctor()
 
     def doctor_to_string(self):
-        if (self.gender == "H"):
-            return f"Médico: Dr. {self.name} {self.surname1} {self.surname2} {self.medical_registration_number} {self.institution}\n"
-        return f"Médico: Dra. {self.name} {self.surname1} {self.surname2} {self.medical_registration_number} {self.institution}\n"
+        if self.gender == "M":
+            return f"Médico: Dr. {self.name} {self.surname1} {self.surname2}. {self.medical_registration_number}. {self.healthcare_role}. {self.institution}\n"
+        return f"Médico: Dra. {self.name} {self.surname1} {self.surname2}. {self.medical_registration_number}. {self.healthcare_role}. {self.institution}\n"
     
 class Assistance():
     def __init__(self):
