@@ -18,9 +18,9 @@ def generate_name(gender):
     Generates a random name based on the gender
     '''
     name = choice(data.identification.female_names) if (gender == "F") else choice(data.identification.male_names)
-    surname1 = choice(data.identification.surnames)
-    surname2 = choice(data.identification.surnames)
-    return name, surname1, surname2
+    first_surname = choice(data.identification.surnames)
+    second_surname = choice(data.identification.surnames)
+    return name, first_surname, second_surname
 
 def generate_dni():
     '''
@@ -59,22 +59,22 @@ def generate_institution(gender):
 def generate_identification_person():
     '''
     Return the gender and a string with the following fields:
-    - Name, surname1 and surname2
+    - Name, first_surname and second_surname
     - DNI
     - Birthdate
     - Gender
     '''
     gender, gender_mention = generate_gender()
-    name, surname1, surname2 = generate_name(gender)
+    name, first_surname, second_surname = generate_name(gender)
     dni = generate_dni()
     birthdate = generate_birthdate()
 
-    return name, surname1, surname2, dni, birthdate, gender, gender_mention
+    return name, first_surname, second_surname, dni, birthdate, gender, gender_mention
 
 def generate_identification_doctor():
     '''
     Return the gender and a string with the following fields:
-    - Name, surname1 and surname2
+    - Name, first_surname and second_surname
     - Gender
     - Medical registration number
     - Healthcare role
@@ -82,8 +82,8 @@ def generate_identification_doctor():
     '''
 
     gender, _ = generate_gender()
-    name, surname1, surname2 = generate_name(gender)
+    name, first_surname, second_surname = generate_name(gender)
     medical_registration_number = generate_medical_registration_number()
     healthcare_role, institution = generate_institution(gender)
 
-    return name, surname1, surname2, gender, medical_registration_number, healthcare_role, institution
+    return name, first_surname, second_surname, gender, medical_registration_number, healthcare_role, institution

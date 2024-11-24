@@ -2,13 +2,14 @@ from generator.identification import generate_identification_person
 from generator.address import generate_address
 from generator.contacts import generate_contacts
 from generator.health_record import generate_health_record
-
+from utils.utils import dirty_names
 class Identification():
     def __init__(self):
-        self.name, self.surname1, self.surname2, self.dni, self.birthdate, self.gender, self.gender_mention = generate_identification_person()
+        self.name, self.first_surname, self.second_surname, self.dni, self.birthdate, self.gender, self.gender_mention = generate_identification_person()
     
     def identification_to_string(self):
-        return f"Nombre: {self.name} {self.surname1} {self.surname2}\nDNI: {self.dni}\nFecha de nacimiento: {self.birthdate}\nGénero: {self.gender_mention}\n"
+        dirty_name, dirty_first_surname, dirty_second_surname = dirty_names(self.name, self.first_surname, self.second_surname)
+        return f"Nombre: {dirty_name} {dirty_first_surname} {dirty_second_surname}\nDNI: {self.dni}\nFecha de nacimiento: {self.birthdate}\nGénero: {self.gender_mention}\n"
 
 class Address():
     def __init__(self):
@@ -19,8 +20,8 @@ class Address():
         return f"Domicilio: {self.street} {self.number}{apt}\nCiudad: {self.city}, {self.province}, {self.community}\nCódigo postal: {self.postal_code}\n"
 
 class Contacts():
-    def __init__(self, name, surname1, surname2, province_number):
-        self.email, self.landline_phone, self.mobile_phone, self.fax, self.use_fax = generate_contacts(name, surname1, surname2, province_number)
+    def __init__(self, name, first_surname, second_surname, province_number):
+        self.email, self.landline_phone, self.mobile_phone, self.fax, self.use_fax = generate_contacts(name, first_surname, second_surname, province_number)
 
     def contacts_to_string(self):
         if self.use_fax:
@@ -44,7 +45,7 @@ class Person():
     def __init__(self):
         self.identification = Identification()
         self.address = Address()
-        self.contacts = Contacts(self.identification.name, self.identification.surname1, self.identification.surname2, self.address.province_number)
+        self.contacts = Contacts(self.identification.name, self.identification.first_surname, self.identification.second_surname, self.address.province_number)
         self.health_record = HealthRecord()
 
     def person_to_string(self):

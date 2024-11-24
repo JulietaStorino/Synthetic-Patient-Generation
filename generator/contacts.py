@@ -3,32 +3,32 @@ import string
 from data.contacts import mail_domains, conectors, phone_prefixes
 from utils.utils import remove_special_characters, generate_n_digits, boolean_with_probability
 
-def generate_email(name, surname1, surname2):
+def generate_email(name, first_surname, second_surname):
     '''
     Generates a random email based on the name and surnames of a person
     '''
     use_name = boolean_with_probability(.6)
-    use_surname1 = boolean_with_probability(.6)
-    use_surname2 = boolean_with_probability(.6)
+    use_first_surname = boolean_with_probability(.6)
+    use_second_surname = boolean_with_probability(.6)
 
     email_parts = []
 
     # Case of random email
-    if not use_name and not use_surname1 and not use_surname2:
+    if not use_name and not use_first_surname and not use_second_surname:
         email_parts.append(''.join(choices(string.ascii_letters + string.digits, k=randint(5, 15))))
     
-    # Case of using name, surname1 or/and surname2
+    # Case of using name, first_surname or/and second_surname
     else:
         if use_name:
             email_parts.append(name.lower())
-        if use_surname1:
+        if use_first_surname:
             if use_name:
                 email_parts.append(choice(conectors))
-            email_parts.append(surname1.lower())
-        if use_surname2:
-            if use_name or use_surname1:
+            email_parts.append(first_surname.lower())
+        if use_second_surname:
+            if use_name or use_first_surname:
                 email_parts.append(choice(conectors))
-            email_parts.append(surname2.lower())
+            email_parts.append(second_surname.lower())
 
     # Case of adding a random number (33% of probability)
     if boolean_with_probability(.3):
@@ -60,11 +60,11 @@ def generate_phone_numbers(province_number):
     fax = f"+34 9{generate_phone_number(province_number)}"
     return landline_phone, mobile_phone, fax
 
-def generate_contacts(name, surname1, surname2, province_number):
+def generate_contacts(name, first_surname, second_surname, province_number):
     '''
     Returns a string with the email, landline and mobile phone or fax of a person
     '''
-    email = generate_email(name, surname1, surname2)
+    email = generate_email(name, first_surname, second_surname)
     landline_phone, mobile_phone, fax = generate_phone_numbers(province_number)
     
     use_fax = boolean_with_probability(.2)
