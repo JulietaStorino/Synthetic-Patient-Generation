@@ -1,8 +1,8 @@
 import random
 import os
-from generator.person import Person
-from generator.healthcare import HealthRecord
-from generator.report import generate_report
+from classes.person import Person
+from classes.healthcare import HealthRecord
+from classes.report import Report
 
 def generate_people_txt(n):
     """
@@ -18,6 +18,7 @@ def generate_people_txt(n):
     for _ in range(n):
         person_created = Person()
         health_record = HealthRecord()
+        report = Report()
 
         namefile = f'{output_dir}{random.randint(0, 999999):06}.txt'
         with open(namefile, "w") as f:
@@ -28,7 +29,7 @@ def generate_people_txt(n):
             f.write(health_record.health_record_to_string())
             f.write("\n")
             f.write("Informe clínico del paciente: ")
-            f.write(generate_report())
+            f.write(report.report_to_string())
 
 if __name__ == "__main__":
     print("This is a Python script to generate random people with their information.")

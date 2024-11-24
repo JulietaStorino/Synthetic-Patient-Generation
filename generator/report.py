@@ -18,17 +18,6 @@ def generate_report():
     """
     Generates a report that may include a MESH population group and a relative of a patient
     """
-    report = 'Paciente'
-
     mesh_group = generate_MESH_population_group()
     companion = generate_patient_companion()
-
-    if mesh_group:
-        report += f" {mesh_group}"
-    
-    if companion:
-        report += f", acompañado de su {companion},"
-    
-    report += " se presenta a la consulta con los siguientes síntomas..."
-    
-    return report
+    return mesh_group, companion
