@@ -2,6 +2,7 @@ import random
 import os
 from generator.person import Person
 from generator.healthcare import HealthRecord
+from generator.report import generate_report
 
 def generate_people_txt(n):
     """
@@ -25,6 +26,9 @@ def generate_people_txt(n):
             f.write("\n")
             f.write("Datos asistenciales.\n")
             f.write(health_record.health_record_to_string())
+            f.write("\n")
+            f.write("Informe clínico del paciente: ")
+            f.write(generate_report())
 
 if __name__ == "__main__":
     print("This is a Python script to generate random people with their information.")
