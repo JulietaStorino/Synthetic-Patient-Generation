@@ -10,7 +10,7 @@ def generate_risk_condition():
     have_risk_profession = False
 
     if boolean_with_probability(.8):
-        number_conditions = choice([1, 1, 2, 2, 3])
+        number_conditions = choice([1, 1, 1, 2, 2])
 
         have_risk_profession = boolean_with_probability(.5)
 
