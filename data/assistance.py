@@ -37,15 +37,15 @@ health_centers = [
 
 # List of 9 medical institutions
 medical_institutions = [
-    "Instituto Universitario de Oftalmobiología Aplicada (IOBA) Campus Miguel Delibes, P.º de Belén, 17, Edificio IOBA, 47011 Valladolid, España",
-    "Instituto Maimónides de Investigación Biomédica de Córdoba (IMIBIC) Hospital Universitario Reina Sofía, Edificio IMIBIC, Av. Menéndez Pidal, s/n, Poniente Sur, 14004 Córdoba, España",
-    "Instituto de Investigación Sanitaria del Hospital 12 de Octubre (Imas12) nstituto de Investigación Hospital 12 de Octubre Centro de Actividades Ambulatorias, 6ª Planta Bloque D Avda. de Córdoba, s/n 28041 - MADRID",
-    "Instituto de Investigación Biomédica en Red de Enfermedades Raras (CIBERER) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
-    "Instituto de Investigación Biomédica en Red de Salud Mental (CIBERSAM) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
-    "Instituto de Investigación Biomédica en Red de Enfermedades Cardiovasculares (CIBERCV) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
-    "Instituto de Investigación Biomédica en Red de Enfermedades Hepáticas y Digestivas (CIBERehd) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
-    "Instituto de Investigación Biomédica en Red de Enfermedades Neurodegenerativas (CIBERNED) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",    
-    "Instituto de Investigación Biomédica en Red de Enfermedades Infecciosas (CIBERINFEC) Instituto de Salud Carlos III C/ Monforte de Lemos 3-5. Pabellón 11. Planta 0 28029 Madrid",
+    "Instituto Universitario de Oftalmobiología Aplicada (IOBA). Avenida Ramón y Cajal, 7. 47011. Valladolid. España.",
+    "Instituto Maimónides de Investigación Biomédica de Córdoba (IMIBIC). Avenida Menéndez Pidal, s/n. 14004. Córdoba. España.",
+    "Instituto de Investigación Sanitaria del Hospital 12 de Octubre (Imas12). Avenida de Córdoba, s/n. 28041. Madrid. España.",
+    "Instituto de Investigación Biomédica en Red de Enfermedades Raras (CIBERER). Avenida Monforte de Lemos 3-5. 28029. Madrid. España.",
+    "Instituto de Investigación Biomédica en Red de Salud Mental (CIBERSAM). Avenida Monforte de Lemos 3-5. 28029. Madrid. España.",
+    "Instituto de Investigación Biomédica en Red de Enfermedades Cardiovasculares (CIBERCV). Avenida Monforte de Lemos 3-5. 28029. Madrid. España.",
+    "Instituto de Investigación Biomédica en Red de Enfermedades Hepáticas y Digestivas (CIBERehd). Avenida Monforte de Lemos 3-5. 28029. Madrid. España.",
+    "Instituto de Investigación Biomédica en Red de Enfermedades Neurodegenerativas (CIBERNED). Avenida Monforte de Lemos 3-5. 28029. Madrid. España.",
+    "Instituto de Investigación Biomédica en Red de Enfermedades Infecciosas (CIBERINFEC). Avenida Monforte de Lemos 3-5. 28029. Madrid. España.",
 ]
 
 # List of three healthcare roles for each medical institution

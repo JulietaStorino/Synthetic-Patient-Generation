@@ -26,7 +26,17 @@ def match_tag(tag_type, tags):
         
     return ET.SubElement(tags, "TAG")
 
-def process_name_tag(tag_type, full_name, start_pos, tags, tag_id):
+def create_tag(tag_type, value, start, end, tags, tag_id):
+    tag = match_tag(tag_type, tags)
+    tag.set("id", f"T{tag_id}")
+    tag.set("start", str(start))
+    tag.set("end", str(end))
+    tag.set("text", value)
+    tag.set("TYPE", tag_type)
+    tag.set("comment", "")
+    return tag_id + 1
+
+def process_name_subject_assistance_tag(tag_type, full_name, start_pos, tags, tag_id):
     """
     Split the full name into name and surnames, and create the corresponding tags.
     """
@@ -61,7 +71,33 @@ def process_name_tag(tag_type, full_name, start_pos, tags, tag_id):
     # Return the next tag id
     return tag_id + 2
 
-def process_city(tag_type, full_localitation, start_pos, tags, tag_id):
+def process_name_healthcare_personnel_tag(match, tags, tag_id):
+    """
+    Create the tags for the healthcare roles.
+    """
+    # Procesar el nombre del personal sanitario y sus detalles
+    name = match.group(1).strip()
+    id_titulacion = match.group(2).strip()
+    id_empleo = match.group(3).strip()
+    institucion = match.group(4).strip()
+    calle = match.group(5).strip()
+    territorio1 = match.group(6).strip()
+    territorio2 = match.group(7).strip()
+    pais = match.group(8).strip()
+
+    # Crear etiquetas para cada parte
+    tag_id = create_tag("NOMBRE_PERSONAL_SANITARIO", name, match.start(1), match.end(1), tags, tag_id)
+    tag_id = create_tag("ID_TITULACION_PERSONAL_SANITARIO", id_titulacion, match.start(2), match.end(2), tags, tag_id)
+    tag_id = create_tag("ID_EMPLEO_PERSONAL_SANITARIO", id_empleo, match.start(3), match.end(3), tags, tag_id)
+    tag_id = create_tag("INSTITUCION", institucion, match.start(4), match.end(4), tags, tag_id)
+    tag_id = create_tag("CALLE", calle, match.start(5), match.end(5), tags, tag_id)
+    tag_id = create_tag("TERRITORIO", territorio1, match.start(6), match.end(6), tags, tag_id)
+    tag_id = create_tag("TERRITORIO", territorio2, match.start(7), match.end(7), tags, tag_id)
+    tag_id = create_tag("PAIS", pais, match.start(8), match.end(8), tags, tag_id)
+
+    return tag_id
+
+def process_city_tag(full_localitation, start_pos, tags, tag_id):
     """
     Split the full localitation into parts and create the corresponding tags.
     """
@@ -70,12 +106,5 @@ def process_city(tag_type, full_localitation, start_pos, tags, tag_id):
 
     for part in parts:
         current_end = current_start + len(part)
-        location_tag = ET.SubElement(tags, "LOCATION")
-        location_tag.set("id", f"T{tag_id}")
-        location_tag.set("start", str(current_start))
-        location_tag.set("end", str(current_end))
-        location_tag.set("text", part)
-        location_tag.set("TYPE", tag_type)
-        location_tag.set("comment", "")
-        tag_id += 1
+        tag_id = create_tag("LOCATION", part, current_start, current_end, tags, tag_id)
         current_start = current_end + 2

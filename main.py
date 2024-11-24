@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from classes.person import Person
 from classes.healthcare import HealthRecord
 from classes.report import Report
-from utils.txt_to_xml import match_tag, process_name_tag, process_city
+from utils.txt_to_xml import match_tag, process_name_subject_assistance_tag, process_name_healthcare_personnel_tag, process_city_tag
 
 def generate_people_txt(n):
     """
@@ -65,8 +65,7 @@ def txt_to_xml(input_file, output_file):
         ("ID_SUJETO_ASISTENCIA", r"NHC: ([^\n]+)"),
         ("ID_ASEGURAMIENTO", r"NASS: ([^\n]+)"),
         ("PROFESION", r"Condiciones de riesgo: ([^\n]+)"),
-        ("NOMBRE_PERSONAL_SANITARIO", r"Médico: Dr\.a? ([^\.]+)"),
-        ("ID_TITULACION_PERSONAL_SANITARIO", r"Número de colegiado|Ncol|Nro\. col\.|N\. col\.|N\. colegiado|N\.º colegiado|Nº colegiado|Nº col\.|NC|nc\.|N\.º col (\d+)"),
+        ("NOMBRE_PERSONAL_SANITARIO", r"Médico: Dr\.a? ([^\.]+)\. (Número de colegiado|Ncol|Nro\. col\.|N\. col\.|N\. colegiado|N\.º colegiado|Nº colegiado|Nº col\.|NC|nc\.|N\.º col) (\d+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\."),
         ("FECHAS", r"Fecha de ingreso: ([^\n]+)"),
         ("ID_CONTACTO_ASISTENCIAL", r"Episodio: ([^\n]+)"),
         ("CENTRO_DE_SALUD", r"Centro de salud: ([^\n]+)"),
@@ -85,9 +84,11 @@ def txt_to_xml(input_file, output_file):
             value = match.group(1).strip()
 
             if tag_type == "NOMBRE_SUJETO_ASISTENCIA":
-                tag_id = process_name_tag(tag_type, match.group(1).strip(), start, tags, tag_id)
+                tag_id = process_name_subject_assistance_tag(tag_type, match.group(1).strip(), start, tags, tag_id)
+            elif tag_type == "NOMBRE_PERSONAL_SANITARIO":
+                tag_id = process_name_healthcare_personnel_tag(match, tags, tag_id)
             elif tag_type == "TERRITORIO" and "Ciudad" in pattern:
-                process_city(tag_type, value, start, tags, tag_id)
+                process_city_tag(value, start, tags, tag_id)
             else:
                 name_tag = match_tag(tag_type, tags)
                 name_tag.set("id", f"T{tag_id}")
