@@ -60,3 +60,10 @@ healthcare_roles = [
     "Neurólogo Especialista en Alzheimer", "Investigador Principal en Parkinson", "Residente de 5° año en Neurología",
     "Especialista en Enfermedades Infecciosas", "Investigador Clínico en Epidemiología", "Residente de 4° año en Medicina Interna"
 ]
+
+# List of 20 car models
+car_models = [
+    "Toyota Corolla", "Honda Civic", "Ford F-150", "Chevrolet Silverado", "Tesla Model 3", "BMW 3 Series", "Mercedes-Benz C-Class", "Audi A4",
+    "Volkswagen Golf", "Nissan Altima", "Hyundai Elantra", "Kia Sorento", "Subaru Outback", "Mazda CX-5", "Jeep Wrangler", "Ram 1500",
+    "Chrysler Pacifica", "Honda CR-V", "Toyota RAV4", "Ford Mustang"
+]
