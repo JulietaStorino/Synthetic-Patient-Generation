@@ -24,7 +24,7 @@ class Contacts():
 
     def contacts_to_string(self):
         if self.use_fax:
-            return f"Email: {self.email}\nTeléfono fijo: {self.landline_phone}\nNúmero de fax: {self.fax}\n"
+            return f"Email: {self.email}\nTeléfono fijo: {self.landline_phone}\nFAX: {self.fax}\n"
         return f"Email: {self.email}\nTeléfono fijo: {self.landline_phone}\nTeléfono móvil: {self.mobile_phone}\n"
     
 class HealthRecord():
