@@ -17,8 +17,8 @@ def generate_people_txt(n):
 
     for _ in range(n):
         person_created = Person()
-        health_record = HealthRecord()
-        report = Report()
+        health_record = HealthRecord(person_created.identification.birthdate)
+        report = Report(person_created.identification.birthdate, health_record.assistance.assistance_date)
 
         namefile = f'{output_dir}{random.randint(0, 999999):06}.txt'
         with open(namefile, "w") as f:

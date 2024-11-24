@@ -1,13 +1,25 @@
 import string
+from datetime import datetime, timedelta
 from random import randint, choice, choices
 from data.assistance import hospitals, health_centers, car_models
 from utils.utils import generate_n_digits, boolean_with_probability
 
-def generate_assistance_date():
+def generate_assistance_date(birthdate):
     '''
-    Generates a random assistance date
+    Generates a random assistance date.
     '''
-    return f"{randint(1, 31):02}/{randint(1, 12):02}/{randint(2015, 2025)}"
+    start_date = datetime.strptime(birthdate, "%d/%m/%Y")
+    end_date = datetime(2025, 12, 31)    
+
+    delta_days = (end_date - start_date).days
+    random_days = randint(0, delta_days)
+
+    assistance_date = start_date + timedelta(days=random_days)
+
+    if assistance_date > datetime.now():
+        assistance_date = datetime.now()
+
+    return assistance_date.strftime("%d/%m/%Y")
 
 def generate_car_registration():
     '''
@@ -48,7 +60,7 @@ def generate_episode():
     '''
     return generate_n_digits(8) if boolean_with_probability(.7) else None
 
-def generate_assistance():
+def generate_assistance(birthdate):
     '''
     Generates a random assistance with the following fields:
     - Assistance date
@@ -58,7 +70,7 @@ def generate_assistance():
     '''
 
     # Generate the assistance date and episode
-    assistance_date = generate_assistance_date()
+    assistance_date = generate_assistance_date(birthdate)
     episode = generate_episode()
     
     # Determine if the patient is going to a hospital or a health center and generate the corresponding institution

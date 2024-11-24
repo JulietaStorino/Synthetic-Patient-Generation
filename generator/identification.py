@@ -1,4 +1,5 @@
 from random import choice, randint
+from datetime import datetime
 import data.assistance
 import data.identification
 from utils.utils import generate_n_digits
@@ -34,7 +35,24 @@ def generate_birthdate():
     '''
     Generates a random birthdate
     '''
-    return f"{randint(1, 31):02}/{randint(1, 12):02}/{randint(1950, 2000)}"
+    current_date = datetime.now()
+    start_year = current_date.year - 100
+    year = randint(start_year, current_date.year)
+    month = randint(1, 12)
+    
+    if month == 2:  # February
+        day = randint(1, 29) if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0) else randint(1, 28)
+    elif month in {4, 6, 9, 11}:  # Months with 30 days
+        day = randint(1, 30)
+    else:  # Months with 31 days
+        day = randint(1, 31)
+
+    birthdate = datetime(year, month, day)
+
+    if birthdate > current_date:
+        birthdate = current_date
+
+    return birthdate.strftime("%d/%m/%Y")
 
 def generate_medical_registration_number():
     '''
