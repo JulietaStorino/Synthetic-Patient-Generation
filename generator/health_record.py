@@ -6,7 +6,7 @@ def generate_risk_condition():
     Generates risk conditions randomly from a list of common diseases and health conditions.
     """
     risk_conditions_list = []
-    high_risk_profession = ''
+    high_risk_profession = None
     have_risk_profession = False
 
     if boolean_with_probability(.5):
@@ -24,7 +24,7 @@ def generate_risk_condition():
                 risk_conditions_list.append(risk_disease)
             number_conditions -= 1
     
-    return have_risk_profession, high_risk_profession, risk_conditions_list
+    return high_risk_profession, risk_conditions_list
 
 def generate_nhc():
     '''
@@ -36,17 +36,18 @@ def generate_nass():
    '''
    Generates a random NASS (Número de Afiliación a la Seguridad Social - Social Security Affiliation Number) and if the person has it
    '''
-   have_nass = boolean_with_probability(.7)
-   return have_nass, generate_n_digits(12)
+   return generate_n_digits(12) if boolean_with_probability(.7) else None
 
 def generate_health_record():
     """
     Generates a health record with the following fields:
-    - NHS number
+    - NHC number
+    - High risk profession (if any)
     - Risk conditions (if any)
+    - NASS number (if any)
     """
     nhc = generate_nhc()
-    have_nass, nass = generate_nass()
-    have_risk_profession, high_risk_profession, risk_conditions_list = generate_risk_condition()
+    nass = generate_nass()
+    high_risk_profession, risk_conditions_list = generate_risk_condition()
 
-    return nhc, have_risk_profession, high_risk_profession, risk_conditions_list, have_nass, nass
+    return nhc, high_risk_profession, risk_conditions_list, nass

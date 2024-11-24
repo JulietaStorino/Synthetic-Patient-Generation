@@ -53,20 +53,20 @@ def generate_phone_number(province_number):
 
 def generate_phone_numbers(province_number):
     '''
-    Generates a random landline and mobile phone number based on the province number
+    Generates a random landline and mobile phone (or FAX) number based on the province number
     '''
-    mobile_phone = f"+34 {choice([6,7])}{generate_phone_number(province_number)}"
+    use_fax = boolean_with_probability(.2) 
+
+    mobile_phone = f"+34 {choice([6,7])}{generate_phone_number(province_number)}" if not use_fax else None
     landline_phone = f"+34 9{generate_phone_number(province_number)}"
-    fax = f"+34 9{generate_phone_number(province_number)}"
+    fax = f"+34 9{generate_phone_number(province_number)}" if use_fax else None
     return landline_phone, mobile_phone, fax
 
 def generate_contacts(name, first_surname, second_surname, province_number):
     '''
-    Returns a string with the email, landline and mobile phone or fax of a person
+    Returns a string with the email, landline and mobile phone (or FAX) of a person
     '''
     email = generate_email(name, first_surname, second_surname)
     landline_phone, mobile_phone, fax = generate_phone_numbers(province_number)
     
-    use_fax = boolean_with_probability(.2)
-
-    return email, landline_phone, mobile_phone, fax, use_fax
+    return email, landline_phone, mobile_phone, fax

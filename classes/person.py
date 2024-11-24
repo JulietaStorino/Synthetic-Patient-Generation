@@ -13,29 +13,29 @@ class Identification():
 
 class Address():
     def __init__(self):
-        self.province_number, self.city, self.province, self.community, self.street, self.number, self.is_apt, self.apt_floor, self.apt_door, self.postal_code = generate_address()
+        self.province_number, self.city, self.province, self.community, self.street, self.number, self.apt_floor, self.apt_door, self.postal_code = generate_address()
 
     def address_to_string(self):
-        apt = f', {self.apt_floor} "{self.apt_door}"' if self.is_apt else "" 
+        apt = f', {self.apt_floor} "{self.apt_door}"' if self.apt_door is not None else "" 
         return f"Domicilio: {self.street} {self.number}{apt}\nCiudad: {self.city}, {self.province}, {self.community}\nCódigo postal: {self.postal_code}\n"
 
 class Contacts():
     def __init__(self, name, first_surname, second_surname, province_number):
-        self.email, self.landline_phone, self.mobile_phone, self.fax, self.use_fax = generate_contacts(name, first_surname, second_surname, province_number)
+        self.email, self.landline_phone, self.mobile_phone, self.fax = generate_contacts(name, first_surname, second_surname, province_number)
 
     def contacts_to_string(self):
-        if self.use_fax:
+        if self.fax is not None:
             return f"Email: {self.email}\nTeléfono fijo: {self.landline_phone}\nFAX: {self.fax}\n"
         return f"Email: {self.email}\nTeléfono fijo: {self.landline_phone}\nTeléfono móvil: {self.mobile_phone}\n"
     
 class HealthRecord():
     def __init__(self):
-        self.nhc, self.have_risk_profession, self.high_risk_profession, self.risk_conditions_list, self.have_nass, self.nass = generate_health_record()
+        self.nhc, self.high_risk_profession, self.risk_conditions_list, self.nass = generate_health_record()
 
     def health_record_to_string(self):
-        conditions_list = self.risk_conditions_list.append(self.high_risk_profession) if self.have_risk_profession else self.risk_conditions_list
+        conditions_list = self.risk_conditions_list.append(self.high_risk_profession) if self.high_risk_profession is not None else self.risk_conditions_list
         health_record = f"NHC: {self.nhc}\n"
-        if self.have_nass:
+        if self.nass is not None:
             health_record += f"NASS: {self.nass}\n"
         if conditions_list:
             health_record += f"Condiciones de riesgo: {', '.join(conditions_list)}\n"

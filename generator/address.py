@@ -1,3 +1,4 @@
+import string
 from random import randint, choice
 from data.address import streets, municipalities, postal_code_prefixes, provinces, communities
 from utils.utils import generate_n_digits, boolean_with_probability
@@ -37,10 +38,10 @@ def generate_apt():
     Generates a random apartment floor (number) and door (letter)
     """
     is_apt = boolean_with_probability(.4)
-    apt_floor = randint(1, 10)
-    apt_door = choice(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'])
-
-    return is_apt, apt_floor, apt_door
+    apt_floor = randint(1, 10) if is_apt else None
+    apt_door = choice(string.ascii_uppercase) if is_apt else None
+    
+    return apt_floor, apt_door
 
 def generate_postal_code(index):
     """
@@ -60,7 +61,7 @@ def generate_address():
     province_number = generate_province_number()
     city, province, community = generate_city(province_number)
     street, number = generate_street()
-    is_apt, apt_floor, apt_door = generate_apt()
+    apt_floor, apt_door = generate_apt()
     postal_code = generate_postal_code(province_number)
         
-    return province_number, city, province, community, street, number, is_apt, apt_floor, apt_door, postal_code
+    return province_number, city, province, community, street, number, apt_floor, apt_door, postal_code
