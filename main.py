@@ -12,7 +12,7 @@ def generate_people_txt(n):
     """
     Generates n files with random people in each one. The files are saved in the output directory.
     """
-    output_dir = "output/txt"
+    output_dir = "output/"
     
     try:
         os.mkdir(output_dir)
@@ -66,7 +66,7 @@ def txt_to_xml(input_file, output_file):
         ("ID_ASEGURAMIENTO", r"NASS: ([^\n]+)"),
         ("PROFESION", r"Condiciones de riesgo: ([^\n]+)"),
         ("NOMBRE_PERSONAL_SANITARIO", r"Médico: Dr\.a? ([^\.]+)"),
-        ("ID_TITULACION_PERSONAL_SANITARIO", r"(Número de colegiado|Ncol|Nro\. col\.|N\. col\.|N\. colegiado|N\.º colegiado|Nº colegiado|Nº col\.|NC|nc\.|N\.º col) (\d+)"),
+        ("ID_TITULACION_PERSONAL_SANITARIO", r"Número de colegiado|Ncol|Nro\. col\.|N\. col\.|N\. colegiado|N\.º colegiado|Nº colegiado|Nº col\.|NC|nc\.|N\.º col (\d+)"),
         ("FECHAS", r"Fecha de ingreso: ([^\n]+)"),
         ("ID_CONTACTO_ASISTENCIAL", r"Episodio: ([^\n]+)"),
         ("CENTRO_DE_SALUD", r"Centro de salud: ([^\n]+)"),
