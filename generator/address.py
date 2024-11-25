@@ -57,7 +57,6 @@ def generate_address():
     - City, province and community
     - Postal code
     """
-
     province_number = generate_province_number()
     city, province, community = generate_city(province_number)
     street, number = generate_street()

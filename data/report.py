@@ -20,7 +20,6 @@ companions_16_to_59 = (
     ["amiga"] + ["vecino"] + ["vecina"] + ["compañero de trabajo"] + ["compañera de trabajo"] + ["compañero de estudio"]
 )
 
-
 companions_60_to_100 = [
     "madre", "padre", "hermana", "hermano", "hija", "hijo", "nuera", "yerno", "marido", "esposa", "pareja", "conviviente",
 ]

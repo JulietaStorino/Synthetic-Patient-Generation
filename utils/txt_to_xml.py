@@ -43,8 +43,16 @@ def process_name_subject_assistance_tag(tag_type, full_name, start_pos, tags, ta
     Split the full name into name and surnames, and create the corresponding tags.
     """
     parts = full_name.split()
-    name = parts[0]
-    surnames = " ".join(parts[1:])
+    name = ""
+    surnames = ""
+
+    # If the person has two names and two surnames
+    if len(parts) == 4:
+        name = " ".join(parts[:2])
+        surnames = " ".join(parts[2:])
+    else:
+        name = parts[0]
+        surnames = " ".join(parts[1:])
 
     # Calculates the start and end positions for the name and surnames
     first_start = start_pos
@@ -52,50 +60,26 @@ def process_name_subject_assistance_tag(tag_type, full_name, start_pos, tags, ta
     last_start = first_end + 1 
     last_end = last_start + len(surnames)
 
-    # Create the tag for the name
-    name_tag = ET.SubElement(tags, "NAME")
-    name_tag.set("id", f"T{tag_id}")
-    name_tag.set("start", str(first_start))
-    name_tag.set("end", str(first_end))
-    name_tag.set("text", name)
-    name_tag.set("TYPE", tag_type)
-    name_tag.set("comment", "")
-
-    # Create the tag for the surnames
-    surnames_tag = ET.SubElement(tags, "NAME")
-    surnames_tag.set("id", f"T{tag_id + 1}")
-    surnames_tag.set("start", str(last_start))
-    surnames_tag.set("end", str(last_end))
-    surnames_tag.set("text", surnames)
-    surnames_tag.set("TYPE", tag_type)
-    surnames_tag.set("comment", "")
+    # Create the tag for the name(s) and surnames
+    tag_id = create_tag(tag_type, name, first_start, first_end, tags, tag_id)
+    tag_id = create_tag(tag_type, surnames, last_start, last_end, tags, tag_id)
 
     # Return the next tag id
-    return tag_id + 2
+    return tag_id
 
 def process_name_healthcare_personnel_tag(match, tags, tag_id):
     """
     Create the tags for the healthcare roles.
     """
-    # Procesar el nombre del personal sanitario y sus detalles
-    name = match.group(1).strip()
-    id_titulacion = match.group(2).strip()
-    id_empleo = match.group(3).strip()
-    institucion = match.group(4).strip()
-    calle = match.group(5).strip()
-    territorio1 = match.group(6).strip()
-    territorio2 = match.group(7).strip()
-    pais = match.group(8).strip()
-
-    # Crear etiquetas para cada parte
-    tag_id = create_tag("NOMBRE_PERSONAL_SANITARIO", name, match.start(1), match.end(1), tags, tag_id)
-    tag_id = create_tag("ID_TITULACION_PERSONAL_SANITARIO", id_titulacion, match.start(2), match.end(2), tags, tag_id)
-    tag_id = create_tag("ID_EMPLEO_PERSONAL_SANITARIO", id_empleo, match.start(3), match.end(3), tags, tag_id)
-    tag_id = create_tag("INSTITUCION", institucion, match.start(4), match.end(4), tags, tag_id)
-    tag_id = create_tag("CALLE", calle, match.start(5), match.end(5), tags, tag_id)
-    tag_id = create_tag("TERRITORIO", territorio1, match.start(6), match.end(6), tags, tag_id)
-    tag_id = create_tag("TERRITORIO", territorio2, match.start(7), match.end(7), tags, tag_id)
-    tag_id = create_tag("PAIS", pais, match.start(8), match.end(8), tags, tag_id)
+    # Create the tags for the healthcare personnel
+    tag_id = create_tag("NOMBRE_PERSONAL_SANITARIO", match.group(1).strip(), match.start(1), match.end(1), tags, tag_id)
+    tag_id = create_tag("ID_TITULACION_PERSONAL_SANITARIO", match.group(2).strip(), match.start(2), match.end(2), tags, tag_id)
+    tag_id = create_tag("ID_EMPLEO_PERSONAL_SANITARIO", match.group(3).strip(), match.start(3), match.end(3), tags, tag_id)
+    tag_id = create_tag("INSTITUCION", match.group(4).strip(), match.start(4), match.end(4), tags, tag_id)
+    tag_id = create_tag("CALLE", match.group(5).strip(), match.start(5), match.end(5), tags, tag_id)
+    tag_id = create_tag("TERRITORIO", match.group(6).strip(), match.start(6), match.end(6), tags, tag_id)
+    tag_id = create_tag("TERRITORIO", match.group(7).strip(), match.start(7), match.end(7), tags, tag_id)
+    tag_id = create_tag("PAIS", match.group(8).strip(), match.start(8), match.end(8), tags, tag_id)
 
     return tag_id
 
@@ -124,8 +108,6 @@ def process_patient_report(match, tags, tag_id):
     if edad_sujeto_asistencia:
         tag_id = create_tag("EDAD_SUJETO_ASISTENCIA", edad_sujeto_asistencia, match.start(2), match.end(2), tags, tag_id)
     if familiares_sujeto_asistencia:
-        start_pos = match.start(4)
-        end_pos = match.end(4)
-        tag_id = create_tag("FAMILIARES_SUJETO_ASISTENCIA", familiares_sujeto_asistencia, start_pos, end_pos, tags, tag_id)
+        tag_id = create_tag("FAMILIARES_SUJETO_ASISTENCIA", familiares_sujeto_asistencia, match.start(4), match.end(4), tags, tag_id)
 
     return tag_id

@@ -98,7 +98,6 @@ def generate_identification_doctor():
     - Healthcare role
     - Institution
     '''
-
     gender, _ = generate_gender()
     name, first_surname, second_surname = generate_name(gender)
     medical_registration_number = generate_medical_registration_number()
