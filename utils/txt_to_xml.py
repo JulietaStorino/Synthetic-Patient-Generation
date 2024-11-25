@@ -1,4 +1,5 @@
 import re
+from constant.mentions import *
 from utils.tag_patterns import match_tag
 
 def create_tag(tag_type, value, start, end, tags, tag_id):
@@ -45,14 +46,14 @@ def process_name_healthcare_personnel_tag(match, tags, tag_id):
     Create the tags for the healthcare roles.
     """
     # Create the tags for the healthcare personnel
-    tag_id = create_tag("NOMBRE_PERSONAL_SANITARIO", match.group(1).strip(), match.start(1), match.end(1), tags, tag_id)
-    tag_id = create_tag("ID_TITULACION_PERSONAL_SANITARIO", match.group(2).strip(), match.start(2), match.end(2), tags, tag_id)
-    tag_id = create_tag("ID_EMPLEO_PERSONAL_SANITARIO", match.group(3).strip(), match.start(3), match.end(3), tags, tag_id)
-    tag_id = create_tag("INSTITUCION", match.group(4).strip(), match.start(4), match.end(4), tags, tag_id)
-    tag_id = create_tag("CALLE", match.group(5).strip(), match.start(5), match.end(5), tags, tag_id)
-    tag_id = create_tag("TERRITORIO", match.group(6).strip(), match.start(6), match.end(6), tags, tag_id)
-    tag_id = create_tag("TERRITORIO", match.group(7).strip(), match.start(7), match.end(7), tags, tag_id)
-    tag_id = create_tag("PAIS", match.group(8).strip(), match.start(8), match.end(8), tags, tag_id)
+    tag_id = create_tag(NOMBRE_PERSONAL_SANITARIO, match.group(1).strip(), match.start(1), match.end(1), tags, tag_id)
+    tag_id = create_tag(ID_TITULACION_PERSONAL_SANITARIO, match.group(2).strip(), match.start(2), match.end(2), tags, tag_id)
+    tag_id = create_tag(ID_EMPLEO_PERSONAL_SANITARIO, match.group(3).strip(), match.start(3), match.end(3), tags, tag_id)
+    tag_id = create_tag(INSTITUCION, match.group(4).strip(), match.start(4), match.end(4), tags, tag_id)
+    tag_id = create_tag(CALLE, match.group(5).strip(), match.start(5), match.end(5), tags, tag_id)
+    tag_id = create_tag(TERRITORIO, match.group(6).strip(), match.start(6), match.end(6), tags, tag_id)
+    tag_id = create_tag(TERRITORIO, match.group(7).strip(), match.start(7), match.end(7), tags, tag_id)
+    tag_id = create_tag(PAIS, match.group(8).strip(), match.start(8), match.end(8), tags, tag_id)
 
     return tag_id
 
@@ -65,7 +66,7 @@ def process_city_tag(full_localitation, start_pos, tags, tag_id):
 
     for part in parts:
         current_end = current_start + len(part)
-        tag_id = create_tag("LOCATION", part, current_start, current_end, tags, tag_id)
+        tag_id = create_tag(TERRITORIO, part, current_start, current_end, tags, tag_id)
         current_start = current_end + 2
 
 def process_patient_report(match, tags, tag_id):
@@ -77,11 +78,11 @@ def process_patient_report(match, tags, tag_id):
     familiares_sujeto_asistencia = match.group(4).strip() if match.group(4) else ""
 
     if id_sujeto_asistencia:
-        tag_id = create_tag("ID_SUJETO_ASISTENCIA", id_sujeto_asistencia, match.start(1), match.end(1), tags, tag_id)
+        tag_id = create_tag(OTROS_SUJETO_ASISTENCIA, id_sujeto_asistencia, match.start(1), match.end(1), tags, tag_id)
     if edad_sujeto_asistencia:
-        tag_id = create_tag("EDAD_SUJETO_ASISTENCIA", edad_sujeto_asistencia, match.start(2), match.end(2), tags, tag_id)
+        tag_id = create_tag(EDAD_SUJETO_ASISTENCIA, edad_sujeto_asistencia, match.start(2), match.end(2), tags, tag_id)
     if familiares_sujeto_asistencia:
-        tag_id = create_tag("FAMILIARES_SUJETO_ASISTENCIA", familiares_sujeto_asistencia, match.start(4), match.end(4), tags, tag_id)
+        tag_id = create_tag(FAMILIARES_SUJETO_ASISTENCIA, familiares_sujeto_asistencia, match.start(4), match.end(4), tags, tag_id)
 
     return tag_id
 
@@ -97,13 +98,13 @@ def process_tag_patterns(tag_patterns, text, tags):
             start, end = match.span(1)
             value = match.group(1).strip()
 
-            if tag_type == "NOMBRE_SUJETO_ASISTENCIA":
+            if tag_type == NOMBRE_SUJETO_ASISTENCIA:
                 tag_id = process_name_subject_assistance_tag(tag_type, match.group(1).strip(), start, tags, tag_id)
-            elif tag_type == "NOMBRE_PERSONAL_SANITARIO":
+            elif tag_type == NOMBRE_PERSONAL_SANITARIO:
                 tag_id = process_name_healthcare_personnel_tag(match, tags, tag_id)
-            elif tag_type == "TERRITORIO" and "Ciudad" in pattern:
+            elif tag_type == TERRITORIO and "Ciudad" in pattern:
                 process_city_tag(value, start, tags, tag_id)
-            elif tag_type == "INFORME_CLINICO_PACIENTE":
+            elif tag_type == OTROS_SUJETO_ASISTENCIA:
                 tag_id = process_patient_report(match, tags, tag_id)
             else:
                 name_tag = match_tag(tag_type, tags)
