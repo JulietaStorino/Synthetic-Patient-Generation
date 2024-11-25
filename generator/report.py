@@ -1,12 +1,12 @@
-from random import choice
-from data.report import MESH_population_groups, companions_0_to_15, companions_16_to_59, companions_60_to_100
+from random import choice, choices
+from data.report import MESH_population_groups, MESH_population_weights, companions_0_to_15, companions_16_to_59, companions_60_to_100
 from utils.utils import boolean_with_probability
 
 def generate_MESH_population_group():
     '''
-    Generates a random MESH population group from a list of common characteristics. It may return None with a 40% probability
+    Generates a random MESH population group from a list of common characteristics.
     '''
-    return choice(MESH_population_groups) if boolean_with_probability(.6) else None
+    return choices(MESH_population_groups, weights=MESH_population_weights, k=1)[0]
 
 def generate_patient_companion(years_old):
     '''

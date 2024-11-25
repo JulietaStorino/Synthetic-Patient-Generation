@@ -1,4 +1,4 @@
-# List of some characteristics of MESH population groups
+# List of some characteristics of MESH population groups (NEEDS to be distinguish between age groups)
 MESH_population_groups = [
     "de tez blanca", "de ascendencia africana del norte", "de ascendencia asiática", "de ascendencia centroasiática", "de ascendencia asiática oriental",
     "de ascendencia asiática del sudeste", "de ascendencia asiática occidental", "de ascendencia caribeña", "de ascendencia indígena americana",
@@ -7,6 +7,12 @@ MESH_population_groups = [
     "de ascendencia indígena centroamericana", "de ascendencia indígena sudamericana", "de ascendencia gitana", "de comunidades vulnerables", "testigo de Jehová",
     "musulman", "judío", "refugiado", "migrante", "transeúnte", "vegetariano", "vegano", "víctima de desastre", "víctima de violencia de género", "discapacitado",
     "terminal", "sobreviviente de violencia", "fumador", "exfumador", "no fumador", "consumidor de alcohol", "usuario de drogas"
+]
+
+# Weights for each MESH population group
+MESH_population_weights = [
+    25, 5, 10, 5, 10, 5, 5, 3, 4, 8, 7, 6, 15, 2, 2, 12, 8, 6, 3, 4, 
+    2, 5, 1, 7, 5, 2, 3, 4, 15, 15, 1, 1, 3, 2, 2, 12, 8, 20, 15, 10
 ]
 
 # List of some possible relatives of a patient according to their age group
