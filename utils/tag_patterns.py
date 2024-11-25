@@ -15,7 +15,7 @@ tag_patterns = [
     ("NUMERO_FAX", r"FAX: ([^\n]+)"),
     ("ID_SUJETO_ASISTENCIA", r"NHC: ([^\n]+)"),
     ("ID_ASEGURAMIENTO", r"NASS: ([^\n]+)"),
-    ("PROFESION", r"Condiciones de riesgo: ([^\n]+)"),
+    ("PROFESION", r"Condición de riesgo: ([^\n]+)"),
     ("NOMBRE_PERSONAL_SANITARIO", r"Médico: Dr\.a? ([^\.]+)\. NC (\d+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\."),
     ("FECHAS", r"Fecha de ingreso: ([^\n]+)"),
     ("ID_CONTACTO_ASISTENCIAL", r"Episodio: ([^\n]+)"),

@@ -16,7 +16,7 @@ class Address():
         self.province_number, self.city, self.province, self.community, self.street, self.number, self.apt_floor, self.apt_door, self.postal_code = generate_address()
 
     def address_to_string(self):
-        apt = f', {self.apt_floor} "{self.apt_door}"' if self.apt_door is not None else "" 
+        apt = f', {self.apt_floor}{self.apt_door}' if self.apt_door is not None else "" 
         return f"Domicilio: {self.street} {self.number}{apt}\nCiudad: {self.city}, {self.province}, {self.community}\nCódigo postal: {self.postal_code}\n"
 
 class Contacts():
@@ -37,7 +37,7 @@ class HealthRecord():
         if self.nass is not None:
             health_record += f"NASS: {self.nass}\n"
         if self.high_risk_profession is not None:
-            health_record += f"Condicion de riesgo: {self.high_risk_profession}\n"
+            health_record += f"Condición de riesgo: {self.high_risk_profession}\n"
         return health_record
 
 class Person():
