@@ -58,7 +58,7 @@ def generate_medical_registration_number():
     '''
     Generates a random medical registration number
     '''
-    return f'{choice(data.identification.medical_signs)} {generate_n_digits(9)}'
+    return f'NC {generate_n_digits(9)}'
 
 def generate_institution(gender):
     '''

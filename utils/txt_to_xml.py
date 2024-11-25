@@ -1,32 +1,5 @@
-import xml.etree.ElementTree as ET
-
-def match_tag(tag_type, tags):
-    """
-    Returns the correct tag element based on the tag type.
-    """
-    match tag_type:
-        case "NOMBRE_PERSONAL_SANITARIO":
-            return ET.SubElement(tags, "NAME")
-        case "ID_SUJETO_ASISTENCIA" | "ID_TITULACION_PERSONAL_SANITARIO" | "ID_ASEGURAMIENTO" | "ID_CONTACTO_ASISTENCIAL" | "IDENTIF_VEHICULOS_NRSERIE_PLACAS" | "ID_EMPLEO_PERSONAL_SANITARIO":
-            return ET.SubElement(tags, "ID")
-        case "CALLE" | "TERRITORIO" | "PAIS":
-            return ET.SubElement(tags, "LOCATION")
-        case "FECHAS":
-            return ET.SubElement(tags, "DATE")
-        case "SEXO_SUJETO_ASISTENCIA" | "FAMILIARES_SUJETO_ASISTENCIA":
-            return ET.SubElement(tags, "OTHER")
-        case "EDAD_SUJETO_ASISTENCIA":
-            return ET.SubElement(tags, "AGE")
-        case "CORREO_ELECTRONICO" | "NUMERO_TELEFONO" | "NUMERO_FAX":
-            return ET.SubElement(tags, "CONTACT")
-        case "PROFESION":
-            return ET.SubElement(tags, "OCCUPATION")
-        case "HOSPITAL" | "CENTRO_DE_SALUD" | "INSTITUCION":
-            return ET.SubElement(tags, "LOCATION")
-        case "EDAD_SUJETO_ASISTENCIA":
-            return ET.SubElement(tags, "AGE")
-        
-    return ET.SubElement(tags, "TAG")
+import re
+from utils.tag_patterns import match_tag
 
 def create_tag(tag_type, value, start, end, tags, tag_id):
     tag = match_tag(tag_type, tags)
@@ -111,3 +84,33 @@ def process_patient_report(match, tags, tag_id):
         tag_id = create_tag("FAMILIARES_SUJETO_ASISTENCIA", familiares_sujeto_asistencia, match.start(4), match.end(4), tags, tag_id)
 
     return tag_id
+
+def process_tag_patterns(tag_patterns, text, tags):
+    """
+    Process the text with the tag patterns and create the corresponding tags.
+    """
+    tag_id = 1
+    for tag_type, pattern in tag_patterns:
+        matches = re.finditer(pattern, text)
+
+        for match in matches:
+            start, end = match.span(1)
+            value = match.group(1).strip()
+
+            if tag_type == "NOMBRE_SUJETO_ASISTENCIA":
+                tag_id = process_name_subject_assistance_tag(tag_type, match.group(1).strip(), start, tags, tag_id)
+            elif tag_type == "NOMBRE_PERSONAL_SANITARIO":
+                tag_id = process_name_healthcare_personnel_tag(match, tags, tag_id)
+            elif tag_type == "TERRITORIO" and "Ciudad" in pattern:
+                process_city_tag(value, start, tags, tag_id)
+            elif tag_type == "INFORME_CLINICO_PACIENTE":
+                tag_id = process_patient_report(match, tags, tag_id)
+            else:
+                name_tag = match_tag(tag_type, tags)
+                name_tag.set("id", f"T{tag_id}")
+                name_tag.set("start", str(start))
+                name_tag.set("end", str(end))
+                name_tag.set("text", value)
+                name_tag.set("TYPE", tag_type)
+                name_tag.set("comment", "")
+                tag_id += 1
