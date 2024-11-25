@@ -25,7 +25,7 @@ tag_patterns = [
     (HOSPITAL, r"Hospital: ([^\n]+)"),
     (IDENTIF_VEHICULOS_NRSERIE_PLACAS, r"Matrícula del coche: ([^\n]+)"),
     (IDENTIF_VEHICULOS_NRSERIE_PLACAS, r"VIN: ([^\n]+)"),
-    (OTROS_SUJETO_ASISTENCIA, r"Paciente\s*(.*?)?\s*de\s*(\d+ años|\d+ meses|un año|un mes)?\s*de edad\s*(, acompañado de su\s*([^,]+),?)?\s*se presenta a la consulta con los siguientes síntomas\.\.\.")
+    (OTROS_SUJETO_ASISTENCIA, r"Paciente\s*(?:de\s*)?(.*?)\s*de\s*(\d+ años|\d+ meses|un año|un mes)?\s*de edad\s*(, acompañado de su\s*([^,]+),?)?\s*se presenta a la consulta con los siguientes síntomas\.\.\.")
 ]
 
 def match_tag(tag_type, tags):
