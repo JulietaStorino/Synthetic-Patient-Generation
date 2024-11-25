@@ -52,9 +52,7 @@ def txt_to_xml():
 
     # Iterate over the txt files in the txt directory
     for file in os.listdir(output_dir_txt):
-
         new_file = output_dir_xml + file.replace(".txt", ".xml")
-
         with open(output_dir_txt + file, 'r', encoding='utf-8') as file:
             text = file.read()
 
@@ -62,7 +60,6 @@ def txt_to_xml():
         text_element = ET.SubElement(root, "TEXT")
         text_element.text = text
         tags = ET.SubElement(root, "TAGS")
-
         process_tag_patterns(tag_patterns, text, tags)
 
         rough_string = ET.tostring(root, encoding="utf-8")
@@ -71,8 +68,9 @@ def txt_to_xml():
 
         pretty_xml = re.sub(
             r"<TEXT>(.*?)</TEXT>",
-            lambda _: f"<TEXT><![CDATA[{text}]]></TEXT>",
-            pretty_xml
+            lambda match: f"<TEXT><![CDATA[{match.group(1)}]]></TEXT>",
+            pretty_xml,
+            flags=re.DOTALL
         )
 
         with open(new_file, "w", encoding="utf-8") as file:
