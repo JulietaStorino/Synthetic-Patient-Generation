@@ -21,7 +21,7 @@ tag_patterns = [
     (NOMBRE_PERSONAL_SANITARIO, r"Médico: Dr\.a? ([^\.]+)\. NC (\d+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\."),
     (FECHAS, r"Fecha de ingreso: ([^\n]+)"),
     (ID_CONTACTO_ASISTENCIAL, r"Episodio: ([^\n]+)"),
-    (ID_CENTRO_DE_SALUD, r"Centro de salud: ([^\n]+)"),
+    (CENTRO_DE_SALUD, r"Centro de salud: ([^\n]+)"),
     (HOSPITAL, r"Hospital: ([^\n]+)"),
     (IDENTIF_VEHICULOS_NRSERIE_PLACAS, r"Matrícula del coche: ([^\n]+)"),
     (IDENTIF_VEHICULOS_NRSERIE_PLACAS, r"VIN: ([^\n]+)"),
@@ -32,19 +32,21 @@ def match_tag(tag_type, tags):
     """
     Returns the correct tag element based on the tag type.
     """
-    if tag_type == NOMBRE_PERSONAL_SANITARIO:
+    if tag_type in [NOMBRE_SUJETO_ASISTENCIA, NOMBRE_PERSONAL_SANITARIO]:
         return ET.SubElement(tags, NAME)
     elif tag_type in [ID_SUJETO_ASISTENCIA, ID_TITULACION_PERSONAL_SANITARIO, ID_ASEGURAMIENTO, ID_CONTACTO_ASISTENCIAL, IDENTIF_VEHICULOS_NRSERIE_PLACAS, ID_EMPLEO_PERSONAL_SANITARIO]:
         return ET.SubElement(tags, ID)
-    elif tag_type in [CALLE, TERRITORIO, PAIS]:
+    elif tag_type in [CALLE, TERRITORIO, PAIS, INSTITUCION, HOSPITAL, CENTRO_DE_SALUD]:
         return ET.SubElement(tags, LOCATION)
     elif tag_type == FECHAS:
         return ET.SubElement(tags, DATE)
-    elif tag_type in [SEXO_SUJETO_ASISTENCIA, FAMILIARES_SUJETO_ASISTENCIA]:
+    elif tag_type in [SEXO_SUJETO_ASISTENCIA, FAMILIARES_SUJETO_ASISTENCIA, OTROS_SUJETO_ASISTENCIA]:
         return ET.SubElement(tags, OTHER)
     elif tag_type == EDAD_SUJETO_ASISTENCIA:
         return ET.SubElement(tags, AGE)
     elif tag_type in [CORREO_ELECTRONICO, NUMERO_TELEFONO, NUMERO_FAX]:
         return ET.SubElement(tags, CONTACT)
+    elif tag_type == PROFESION:
+        return ET.SubElement(tags, PROFESSION)
     
     return ET.SubElement(tags, TAG)
