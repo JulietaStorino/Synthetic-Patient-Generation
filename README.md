@@ -94,26 +94,26 @@ Informe clínico del paciente: Paciente de ascendencia norteamericana de 56 año
         <LOCATION id="T8" start="160" end="169" text="La Coruña" TYPE="TERRITORIO" comment=""/>
         <LOCATION id="T9" start="171" end="178" text="Galicia" TYPE="TERRITORIO" comment=""/>
         <LOCATION id="T7" start="194" end="199" text="15177" TYPE="TERRITORIO" comment=""/>
-        <CONTACT id="T8" start="207" end="228" text="belen-hurtado@aol.com" TYPE="CORREO_ELECTRÓNICO" comment=""/>
-        <CONTACT id="T9" start="244" end="260" text="+34 981 79 35 10" TYPE="NÚMERO_TELÉFONO" comment=""/>
-        <CONTACT id="T10" start="277" end="293" text="+34 681 75 77 60" TYPE="NÚMERO_TELÉFONO" comment=""/>
-        <CONTACT id="T11" start="309" end="325" text="+34 981 92 32 45" TYPE="NÚMERO_FAX" comment=""/>
+        <CONTACT id="T8" start="207" end="228" text="belen-hurtado@aol.com" TYPE="CORREO_ELECTRONICO" comment=""/>
+        <CONTACT id="T9" start="244" end="260" text="+34 981 79 35 10" TYPE="NUMERO_TELEFONO" comment=""/>
+        <CONTACT id="T10" start="277" end="293" text="+34 681 75 77 60" TYPE="NUMERO_TELEFONO" comment=""/>
+        <CONTACT id="T11" start="309" end="325" text="+34 981 92 32 45" TYPE="NUMERO_FAX" comment=""/>
         <ID id="T11" start="299" end="306" text="6946614" TYPE="ID_SUJETO_ASISTENCIA" comment=""/>
         <ID id="T12" start="313" end="325" text="753866020233" TYPE="ID_ASEGURAMIENTO" comment=""/>
-        <PROFESSION id="T13" start="347" end="354" text="Microbiólogo" TYPE="PROFESIÓN" comment=""/>
+        <PROFESSION id="T13" start="347" end="354" text="Microbiólogo" TYPE="PROFESION" comment=""/>
         <NAME id="T14" start="389" end="411" text="Christian Santana Mora" TYPE="NOMBRE_PERSONAL_SANITARIO" comment=""/>
-        <ID id="T15" start="416" end="425" text="377307419" TYPE="ID_TITULACIÓN_PERSONAL_SANITARIO" comment=""/>
+        <ID id="T15" start="416" end="425" text="377307419" TYPE="ID_TITULACION_PERSONAL_SANITARIO" comment=""/>
         <ID id="T16" start="427" end="467" text="Especialista en Enfermedades Infecciosas" TYPE="ID_EMPLEO_PERSONAL_SANITARIO" comment=""/>
-        <LOCATION id="T17" start="469" end="553" text="Instituto de Investigación Biomédica en Red de Enfermedades Infecciosas (CIBERINFEC)" TYPE="INSTITUCIÓN" comment=""/>
+        <LOCATION id="T17" start="469" end="553" text="Instituto de Investigación Biomédica en Red de Enfermedades Infecciosas (CIBERINFEC)" TYPE="INSTITUCION" comment=""/>
         <LOCATION id="T18" start="555" end="584" text="Avenida Monforte de Lemos 3-5" TYPE="CALLE" comment=""/>
         <LOCATION id="T19" start="586" end="591" text="28029" TYPE="TERRITORIO" comment=""/>
         <LOCATION id="T20" start="593" end="599" text="Madrid" TYPE="TERRITORIO" comment=""/>
-        <LOCATION id="T21" start="601" end="607" text="España" TYPE="PAÍS" comment=""/>
+        <LOCATION id="T21" start="601" end="607" text="España" TYPE="PAIS" comment=""/>
         <DATE id="T22" start="627" end="637" text="26/09/2003" TYPE="FECHAS" comment=""/>
         <ID id="T23" start="648" end="656" text="76187527" TYPE="ID_CONTACTO_ASISTENCIAL" comment=""/>
         <LOCATION id="T24" start="667" end="705" text="Complejo Hospitalario La Mancha Centro" TYPE="HOSPITAL" comment=""/>
-        <ID id="T25" start="727" end="734" text="2459EQY" TYPE="IDENTIF_VEHÍCULOS_NRSERIE_PLACAS" comment=""/>
-        <ID id="T26" start="759" end="776" text="VSS4PJC8CYJ596603" TYPE="IDENTIF_VEHÍCULOS_NRSERIE_PLACAS" comment=""/>
+        <ID id="T25" start="727" end="734" text="2459EQY" TYPE="IDENTIF_VEHICULOS_NRSERIE_PLACAS" comment=""/>
+        <ID id="T26" start="759" end="776" text="VSS4PJC8CYJ596603" TYPE="IDENTIF_VEHICULOS_NRSERIE_PLACAS" comment=""/>
         <OTHER id="T27" start="820" end="846" text="ascendencia norteamericana" TYPE="OTROS_SUJETO_ASISTENCIA" comment=""/>
         <AGE id="T28" start="850" end="857" text="56 años" TYPE="EDAD_SUJETO_ASISTENCIA" comment=""/>
         <OTHER id="T29" start="884" end="888" text="hijo" TYPE="FAMILIARES_SUJETO_ASISTENCIA" comment=""/>
