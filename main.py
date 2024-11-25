@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from classes.person import Person
 from classes.healthcare import HealthRecord
 from classes.report import Report
-from utils.txt_to_xml import match_tag, process_name_subject_assistance_tag, process_name_healthcare_personnel_tag, process_city_tag
+from utils.txt_to_xml import match_tag, process_name_subject_assistance_tag, process_name_healthcare_personnel_tag, process_city_tag, process_patient_report
 
 def generate_people_txt(n):
     """
@@ -48,7 +48,7 @@ def txt_to_xml(input_file, output_file):
 
     # Creates the TAGS section
     tags = ET.SubElement(root, "TAGS")
-    
+
     # Define the tag patterns
     tag_patterns = [
         ("NOMBRE_SUJETO_ASISTENCIA", r"Nombre: ([^\n]+)"),
@@ -65,13 +65,14 @@ def txt_to_xml(input_file, output_file):
         ("ID_SUJETO_ASISTENCIA", r"NHC: ([^\n]+)"),
         ("ID_ASEGURAMIENTO", r"NASS: ([^\n]+)"),
         ("PROFESION", r"Condiciones de riesgo: ([^\n]+)"),
-        ("NOMBRE_PERSONAL_SANITARIO", r"Médico: Dr\.a? ([^\.]+)\. (Número de colegiado|Ncol|Nro\. col\.|N\. col\.|N\. colegiado|N\.º colegiado|Nº colegiado|Nº col\.|NC|nc\.|N\.º col) (\d+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\."),
+        ("NOMBRE_PERSONAL_SANITARIO", r"Médico: Dr\.a? ([^\.]+)\. NC (\d+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\. ([^\.]+)\."),
         ("FECHAS", r"Fecha de ingreso: ([^\n]+)"),
         ("ID_CONTACTO_ASISTENCIAL", r"Episodio: ([^\n]+)"),
         ("CENTRO_DE_SALUD", r"Centro de salud: ([^\n]+)"),
         ("HOSPITAL", r"Hospital: ([^\n]+)"),
         ("IDENTIF_VEHICULOS_NRSERIE_PLACAS", r"Matrícula del coche: ([^\n]+)"),
         ("IDENTIF_VEHICULOS_NRSERIE_PLACAS", r"VIN: ([^\n]+)"),
+        ("INFORME_CLINICO_PACIENTE", r"Paciente\s*(.*?)?\s*de\s*(\d+ años|\d+ meses|un año|un mes)?\s*de edad\s*(, acompañado de su\s*([^,]+))?,\s*se presenta a la consulta con los siguientes síntomas\.\.\.")
     ]
 
     # Process the tag patterns
@@ -89,6 +90,8 @@ def txt_to_xml(input_file, output_file):
                 tag_id = process_name_healthcare_personnel_tag(match, tags, tag_id)
             elif tag_type == "TERRITORIO" and "Ciudad" in pattern:
                 process_city_tag(value, start, tags, tag_id)
+            elif tag_type == "INFORME_CLINICO_PACIENTE":
+                tag_id = process_patient_report(match, tags, tag_id)
             else:
                 name_tag = match_tag(tag_type, tags)
                 name_tag.set("id", f"T{tag_id}")

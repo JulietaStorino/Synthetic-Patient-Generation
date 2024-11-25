@@ -63,8 +63,6 @@ surnames = [
 # Letters that can be used in a DNI
 dni_letters = "TRWAGMYFPDXBNJZSQVHLCKE"
 
-# Medical signs that can be used in a medical registration number
-medical_signs = [ "Número de colegiado", "Ncol", "Nro. col.", "N. col.", "N. colegiado", "N.º colegiado", "Nº colegiado", "Nº col.", "NC", "nc.", "N.º col",]
-
+# Different ways to represent female and male gender
 male_gender = ["H","Hombre", "V", "Varón", "M", "Masculino"]
 female_gender = ["M", "Mujer", "F", "Femenino"]
