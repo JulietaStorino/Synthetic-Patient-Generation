@@ -1,9 +1,12 @@
+# Default tag
+TAG = "TAG"
+
+# Tag for each kind of entity
 NAME = "NAME"
 ID = "ID"
 LOCATION = "LOCATION"
 DATE = "DATE"
-OTHER = "OTHER"
 AGE = "AGE"
 CONTACT = "CONTACT"
 PROFESSION = "PROFESSION"
-TAG = "TAG"
+OTHER = "OTHER"

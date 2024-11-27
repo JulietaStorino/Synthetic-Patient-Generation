@@ -1,6 +1,6 @@
 import re
-from constant.mentions import *
-from utils.tag_patterns import match_tag
+from constant.label import *
+from util.tag_pattern import match_tag
 
 def create_tag(tag_type, value, start, end, tags, tag_id):
     tag = match_tag(tag_type, tags)
@@ -107,11 +107,4 @@ def process_tag_patterns(tag_patterns, text, tags):
             elif tag_type == OTROS_SUJETO_ASISTENCIA:
                 tag_id = process_patient_report(match, tags, tag_id)
             else:
-                name_tag = match_tag(tag_type, tags)
-                name_tag.set("id", f"T{tag_id}")
-                name_tag.set("start", str(start))
-                name_tag.set("end", str(end))
-                name_tag.set("text", value)
-                name_tag.set("TYPE", tag_type)
-                name_tag.set("comment", "")
-                tag_id += 1
+                tag_id = create_tag(tag_type, value, start, end, tags, tag_id)

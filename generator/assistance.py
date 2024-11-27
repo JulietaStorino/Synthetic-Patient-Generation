@@ -2,7 +2,7 @@ import string
 from datetime import datetime, timedelta
 from random import randint, choice, choices
 from data.assistance import hospitals, health_centers, car_models
-from utils.utils import generate_n_digits, boolean_with_probability
+from util.util import generate_n_digits, boolean_with_probability
 
 def generate_assistance_date(birthdate):
     '''

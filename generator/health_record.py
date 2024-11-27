@@ -1,6 +1,6 @@
 from random import choice
 from data.health_record import high_risk_professions
-from utils.utils import boolean_with_probability, generate_n_digits
+from util.util import boolean_with_probability, generate_n_digits
 def generate_risk_condition():
     """
     Generates a risk condition randomly from a list of common professions.

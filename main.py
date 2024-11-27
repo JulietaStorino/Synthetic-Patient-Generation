@@ -6,8 +6,8 @@ import xml.etree.ElementTree as ET
 from classes.person import Person
 from classes.healthcare import HealthRecord
 from classes.report import Report
-from utils.tag_patterns import tag_patterns
-from utils.txt_to_xml import process_tag_patterns
+from util.tag_pattern import tag_patterns
+from util.txt_to_xml import process_tag_patterns
 
 def generate_people_txt(n):
     """

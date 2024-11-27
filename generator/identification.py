@@ -2,7 +2,7 @@ from random import choice, randint
 from datetime import datetime
 import data.assistance
 import data.identification
-from utils.utils import generate_n_digits
+from util.util import generate_n_digits
 
 def generate_gender():
     '''

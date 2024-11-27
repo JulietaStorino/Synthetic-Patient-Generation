@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
-from constant.mentions import *
-from constant.labels import *
+from constant.label import *
+from constant.tag import *
 
 # Define the tag patterns
 tag_patterns = [

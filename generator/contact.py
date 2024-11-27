@@ -1,7 +1,7 @@
 from random import randint, choice, choices
 import string
-from data.contacts import mail_domains, conectors, phone_prefixes
-from utils.utils import remove_special_characters, generate_n_digits, boolean_with_probability
+from data.contact import mail_domains, conectors, phone_prefixes
+from util.util import remove_special_characters, generate_n_digits, boolean_with_probability
 
 def generate_email(name, first_surname, second_surname):
     '''
