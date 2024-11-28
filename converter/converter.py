@@ -40,7 +40,7 @@ def process_xml_match(label_type, match, tags, label_id, pattern):
     elif label_type == NOMBRE_PERSONAL_SANITARIO:
         id = xml.process_name_healthcare_personnel(match, tags, label_id)
     elif label_type == TERRITORIO and "Ciudad" in pattern:
-        xml.process_city(value, start, tags, label_id)
+        id = xml.process_city(value, start, tags, label_id)
     elif label_type == OTROS_SUJETO_ASISTENCIA:
         id = xml.process_patient_report(match, tags, label_id)
     else:
@@ -60,7 +60,7 @@ def process_brat_match(label_type, match, label_id, pattern):
     elif label_type == NOMBRE_PERSONAL_SANITARIO:
         id, text = brat.process_name_healthcare_personnel(match, label_id)
     elif label_type == TERRITORIO and "Ciudad" in pattern:
-        brat.process_city(value, start, label_id)
+        id, text = brat.process_city(value, start, label_id)
     elif label_type == OTROS_SUJETO_ASISTENCIA:
         id, text = brat.process_patient_report(match, label_id)
     else:
