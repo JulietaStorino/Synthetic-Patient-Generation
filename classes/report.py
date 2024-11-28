@@ -1,5 +1,5 @@
 from datetime import datetime
-from generator.report import generate_report
+from generator.report import generate_report, generate_biometricid_report, generate_virtualinfo_report
 
 class Report():
     def __init__(self, birthdate, date):
@@ -44,3 +44,11 @@ class Report():
         report += " se presenta a la consulta con los siguientes síntomas..."
         
         return report
+
+    def virtualdir_to_string(self):
+        return generate_virtualinfo_report() + "\n"
+
+    def biometric_to_string(self):
+        return generate_biometricid_report() + "\n"
+
+
