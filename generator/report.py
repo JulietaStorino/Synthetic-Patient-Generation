@@ -1,6 +1,6 @@
 from random import choice, choices
 from data.report import MESH_population_groups, MESH_population_weights, companions_0_to_15, companions_16_to_59, companions_60_to_100
-from util.util import boolean_with_probability
+from util import boolean_with_probability
 
 def generate_MESH_population_group():
     '''

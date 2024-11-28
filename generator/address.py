@@ -1,7 +1,7 @@
 import string
 from random import randint, choice
 from data.address import streets, municipalities, postal_code_prefixes, provinces, communities
-from util.util import generate_n_digits, boolean_with_probability
+from util import generate_n_digits, boolean_with_probability
 
 def generate_province_number():
     """

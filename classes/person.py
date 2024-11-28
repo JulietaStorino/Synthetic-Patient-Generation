@@ -2,7 +2,7 @@ from generator.identification import generate_identification_person
 from generator.address import generate_address
 from generator.contact import generate_contacts
 from generator.health_record import generate_health_record
-from util.util import dirty_names
+from classes.util import *
 class Identification():
     def __init__(self):
         self.name, self.first_surname, self.second_surname, self.dni, self.birthdate, self.gender, self.gender_mention = generate_identification_person()
