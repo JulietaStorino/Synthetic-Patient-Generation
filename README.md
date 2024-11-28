@@ -1,14 +1,14 @@
 # Synthetic-Patient-Generation 🇪🇸
-This repository contains a Python script (`main.py`) that generates synthetic information for Spanish residents, including names, surnames, birthdates, addresses, emails, phone numbers, and more. The generated information is saved in text files, xml notation, and brat notation within the output directory.
+This repository contains a Python script (`main.py`) that generates synthetic information for Spanish residents, including names, surnames, birthdates, addresses, emails, phone numbers, and more. The generated information is saved in text files (.txt), i2b2 notation (.xml), and brat notation (.ann) within the output directory.
 
 ## Files
 - `classes`: A directory that contains classes used for generating synthetic information.
-- `constants`: A directory that contains the tags and labels used for xml notation.
-- `converter`: A directory that contains the functions for converting the generated information to xml and brat notation. 
+- `constants`: A directory that contains the tags and labels used for i2b2 and brat notation.
+- `converter`: A directory that contains the functions for converting the generated information to i2b2 and brat notation.
 - `data`: A directory that contains data used for generating synthetic information.
 - `generator`: A directory that contains the functions for generating different parts of the synthetic information.
 - `output\txt`: A directory where the generated information is saved in text files.
-- `output\xml`: A directory where the generated information is saved in xml notation.
+- `output\xml`: A directory where the generated information is saved in i2b2 notation.
 - `output\brat`: A directory where the generated information is saved in brat notation.
 - `.gitignore`: The gitignore file.
 - `LICENSE`: The license file.
@@ -57,7 +57,7 @@ VIN: VSS4PJC8CYJ596603
 
 Informe clínico del paciente: Paciente de ascendencia norteamericana de 56 años de edad, acompañado de su hijo, se presenta a la consulta con los siguientes síntomas...
 ```
-Not all the labels are shown in every generated clinical history. Some labels are randomly selected for each generated clinical history to make the information more diverse. The same clinical history in xml format may have the following format:
+Not all the labels are shown in every generated clinical history. Some labels are randomly selected for each generated clinical history to make the information more diverse. The same clinical history in i2b2 format may have the following format:
 
 ```xml
 <?xml version="1.0" ?>
