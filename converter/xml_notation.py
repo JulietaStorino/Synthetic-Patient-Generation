@@ -75,7 +75,7 @@ def process_name_healthcare_personnel(match, tags, label_id):
 
     return label_id
 
-def process_city_label(full_localitation, start_pos, tags, label_id):
+def process_city(full_localitation, start_pos, tags, label_id):
     """
     Split the full localitation into parts and create the corresponding tags.
     """

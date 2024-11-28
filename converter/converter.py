@@ -2,6 +2,7 @@ import re
 from constant.label import *
 from constant.tag import *
 import converter.xml_notation as xml
+import converter.brat_notation as brat
 
 # Define the labels patterns
 label_patterns = [
@@ -32,36 +33,40 @@ label_patterns = [
 def process_xml_match(label_type, match, tags, label_id, pattern):
     start, end = match.span(1)
     value = match.group(1).strip()
+    id = label_id
 
     if label_type == NOMBRE_SUJETO_ASISTENCIA:
-        label_id = xml.process_name_subject_assistance(label_type, match.group(1).strip(), start, tags, label_id)
+        id = xml.process_name_subject_assistance(label_type, match.group(1).strip(), start, tags, label_id)
     elif label_type == NOMBRE_PERSONAL_SANITARIO:
-        label_id = xml.process_name_healthcare_personnel(match, tags, label_id)
+        id = xml.process_name_healthcare_personnel(match, tags, label_id)
     elif label_type == TERRITORIO and "Ciudad" in pattern:
-        xml.process_city_label(value, start, tags, label_id)
+        xml.process_city(value, start, tags, label_id)
     elif label_type == OTROS_SUJETO_ASISTENCIA:
-        label_id = xml.process_patient_report(match, tags, label_id)
+        id = xml.process_patient_report(match, tags, label_id)
     else:
-        label_id = xml.create_tag(label_type, value, start, end, tags, label_id)
+        id = xml.create_tag(label_type, value, start, end, tags, label_id)
 
-    return label_id
+    return id
 
 def process_brat_match(label_type, match, label_id, pattern):
     start, end = match.span(1)
     value = match.group(1).strip()
 
-    if label_type == NOMBRE_SUJETO_ASISTENCIA:
-        label_id = xml.process_name_subject_assistance(label_type, match.group(1).strip(), start, label_id)
-    elif label_type == NOMBRE_PERSONAL_SANITARIO:
-        label_id = xml.process_name_healthcare_personnel(match, label_id)
-    elif label_type == TERRITORIO and "Ciudad" in pattern:
-        xml.process_city_tag(value, start, label_id)
-    elif label_type == OTROS_SUJETO_ASISTENCIA:
-        label_id = xml.process_patient_report(match, label_id)
-    else:
-        label_id = xml.create_tag(label_type, value, start, end, label_id)
+    text = ""
+    id = label_id
 
-    return label_id
+    if label_type == NOMBRE_SUJETO_ASISTENCIA:
+        id, text = brat.process_name_subject_assistance(label_type, match.group(1).strip(), start, label_id)
+    elif label_type == NOMBRE_PERSONAL_SANITARIO:
+        id, text = brat.process_name_healthcare_personnel(match, label_id)
+    elif label_type == TERRITORIO and "Ciudad" in pattern:
+        brat.process_city(value, start, label_id)
+    elif label_type == OTROS_SUJETO_ASISTENCIA:
+        id, text = brat.process_patient_report(match, label_id)
+    else:
+        id, text = brat.proccess_label(label_type, value, start, end, label_id)
+
+    return id, text
 
 def process_xml_labels(text, tags):
     """

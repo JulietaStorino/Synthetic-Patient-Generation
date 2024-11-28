@@ -98,7 +98,7 @@ def generate_people(n):
     for _ in range(n):
         namefile = generate_person_txt()
         generate_person_xml(namefile)
-        # generate_person_brat(namefile)
+        generate_person_brat(namefile)
         
 if __name__ == "__main__":
     print("This is a Python script to generate random people with their information.")
