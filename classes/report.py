@@ -42,9 +42,9 @@ class Report():
                 report += f" de {self.years} años de edad"
         
         if self.companion is not None:
-            report += f", acompañado de su {self.companion},"
+            report += f", acompañado de su {self.companion}"
         
-        report += " se presenta a la consulta con los siguientes síntomas..."
+        report += ". "
         
         return report
 

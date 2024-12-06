@@ -25,9 +25,14 @@ label_patterns = [
     (ID_CONTACTO_ASISTENCIAL, r"Episodio: ([^\n]+)"),
     (CENTRO_DE_SALUD, r"Centro de salud: ([^\n]+)"),
     (HOSPITAL, r"Hospital: ([^\n]+)"),
-    (IDENTIF_VEHICULOS_NRSERIE_PLACAS, r"Matrícula del coche: ([^\n]+)"),
-    (IDENTIF_VEHICULOS_NRSERIE_PLACAS, r"VIN: ([^\n]+)"),
-    (OTROS_SUJETO_ASISTENCIA, r"Paciente\s*(?:de\s*)?(.*?)\s*de\s*(\d+ años|\d+ meses|un año|un mes)?\s*de edad\s*(, acompañado de su\s*([^,]+),?)?\s*se presenta a la consulta con los siguientes síntomas\.\.\.")
+    (ID_VEHICULOS_NRSERIE_PLACAS, r"Matrícula del coche: ([^\n]+)"),
+    (ID_VEHICULOS_NRSERIE_PLACAS, r"VIN: ([^\n]+)"),
+    (OTROS_SUJETO_ASISTENCIA, r"Paciente\s*(?:de\s*)?(.*?)\s*de\s*(\d+ años|\d+ meses|un año|un mes)?\s*de edad\s*(, acompañado de su ([^\. ]+))?"),
+    (DIREC_PROT_INTERNET, r"Se registró una consulta virtual desde la dirección IP (en red interna) ([^\,]+)"),
+    (DIREC_PROT_INTERNET, r"con dirección MAC ([^\.]+)"),
+    (URL_WEB, r"Se realizó un expediente con URL ([^\. ]+)"),
+    (URL_WEB, r"El servidor para envío de información desde cual el usuario se comunica es ([^\. ]+)"),
+    (ID_BIOMETRICOS, r"el código obtenido para revisarla es ([^\. ]+)"),
 ]
 
 def process_xml_match(label_type, match, tags, label_id, pattern):
