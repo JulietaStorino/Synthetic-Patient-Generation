@@ -28,11 +28,11 @@ label_patterns = [
     (ID_VEHICULOS_NRSERIE_PLACAS, r"Matrícula del coche: ([^\n]+)"),
     (ID_VEHICULOS_NRSERIE_PLACAS, r"VIN: ([^\n]+)"),
     (OTROS_SUJETO_ASISTENCIA, r"Paciente\s*(?:de\s*)?(.*?)\s*de\s*(\d+ años|\d+ meses|un año|un mes)?\s*de edad\s*(, acompañado de su ([^\. ]+))?"),
-    (DIREC_PROT_INTERNET, r"Se registro una consulta virtual desde la Direccion IP (en red interna) ([^\,]+)"),
-    (DIREC_PROT_INTERNET, r"con Direccion MAC del dispositivo ([^\.]+)"),
-    (URL_WEB, r"Se realizo un expediente, con  URL de acceso a expediente ([^\. ]+)"),
-    (URL_WEB, r"El Servidor SMTP (para envio de informacion) en el que este usuario se comunica es ([^\. ]+)"),
-    (ID_BIOMETRICOS, r"el codigo obtenido fue para revisarla fue ([^\. ]+)"),
+    (DIREC_PROT_INTERNET, r"Se registró una consulta virtual desde la dirección IP (en red interna) ([^\,]+)"),
+    (DIREC_PROT_INTERNET, r"con dirección MAC ([^\.]+)"),
+    (URL_WEB, r"Se realizó un expediente con URL ([^\. ]+)"),
+    (URL_WEB, r"El servidor para envío de información desde cual el usuario se comunica es ([^\. ]+)"),
+    (ID_BIOMETRICOS, r"el código obtenido para revisarla es ([^\. ]+)"),
 ]
 
 def process_xml_match(label_type, match, tags, label_id, pattern):
