@@ -1,3 +1,42 @@
+import random
+import string
+
+
+# List of 1000 IP addresses
+ip_list = [f"192.168.{random.randint(0, 255)}.{random.randint(0, 255)}" for _ in range(1000)]
+
+# List of biometric data IDs
+biometric_identifiers = [
+    "".join(random.choices(string.ascii_uppercase, k=2)) +
+    "".join(random.choices(string.digits, k=3)) +
+    "".join(random.choices(string.ascii_uppercase, k=3)) +
+    "".join(random.choices(string.digits, k=3))
+    for _ in range(5000)
+]
+
+# Generate a list of all possible ports in string format (0 to 65535)
+all_ports = [str(port) for port in range(0, 65536)]
+
+# List of MAC addresses
+mac_addresses = [
+    ":".join(f"{random.randint(0, 255):02X}" for _ in range(6)) for _ in range(1000)
+]
+
+# List of fake emails
+smtp_domains = [
+    "example-clinica.com", "example-hospital.org", "example-healthcare.net",
+    "example-medical.edu", "example-labs.com", "example-pharma.org",
+    "example-research.net", "example-biotech.com", "example-radiology.edu",
+    "example-therapy.org", "example-nutrition.net", "example-cardiology.com",
+    "example-dermatology.org", "example-ophthalmology.net", "example-neurology.com"
+]
+
+# List of 100 fake access URLs for expedientes
+urls = [
+    f"/{random.randint(10000000, 99999999)}{random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')}"
+    for _ in range(100)
+]
+
 # List of some characteristics of MESH population groups (NEEDS to be distinguish between age groups)
 MESH_population_groups = [
     "de tez blanca", "de ascendencia africana del norte", "de ascendencia asiática", "de ascendencia centroasiática", "de ascendencia asiática oriental",

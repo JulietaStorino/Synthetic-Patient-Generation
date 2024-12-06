@@ -1,5 +1,5 @@
 from datetime import datetime
-from generator.report import generate_report
+from generator.report import generate_report, generate_biometricid_report, generate_virtualinfo_report
 
 class Report():
     def __init__(self, birthdate, date):
@@ -18,6 +18,9 @@ class Report():
                 self.months -= 1
         else:
             self.months = None
+
+        self.biometric_report = generate_biometricid_report()
+        self.virtualinfo_report = generate_virtualinfo_report()
 
         self.mesh_group, self.companion = generate_report(self.years)
 
@@ -44,3 +47,11 @@ class Report():
         report += " se presenta a la consulta con los siguientes síntomas..."
         
         return report
+
+    def virtualdir_to_string(self):
+        return self.virtualinfo_report
+
+    def biometric_to_string(self):
+        return self.biometric_report
+
+

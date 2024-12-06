@@ -41,8 +41,10 @@ def generate_person_txt():
         f.write(person_created.person_to_string())
         f.write("\nDatos asistenciales.\n")
         f.write(health_record.health_record_to_string())
-        f.write("\nInforme clínico del paciente: ")
+        f.write("\nInforme clínico del paciente:\n")
         f.write(report.report_to_string())
+        f.write(report.virtualdir_to_string())
+        f.write(report.biometric_to_string())
     
     return numberfile
 
