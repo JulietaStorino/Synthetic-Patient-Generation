@@ -19,6 +19,9 @@ class Report():
         else:
             self.months = None
 
+        self.biometric_report = generate_biometricid_report()
+        self.virtualinfo_report = generate_virtualinfo_report()
+
         self.mesh_group, self.companion = generate_report(self.years)
 
     def report_to_string(self):
@@ -46,9 +49,9 @@ class Report():
         return report
 
     def virtualdir_to_string(self):
-        return generate_virtualinfo_report() + "\n"
+        return self.virtualinfo_report
 
     def biometric_to_string(self):
-        return generate_biometricid_report() + "\n"
+        return self.biometric_report
 
 

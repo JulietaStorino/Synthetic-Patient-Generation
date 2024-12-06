@@ -1,4 +1,4 @@
-from random import choice, choices, randint
+from random import choice, choices, randint, random
 from data.report import MESH_population_groups, MESH_population_weights, companions_0_to_15, companions_16_to_59, companions_60_to_100, biometric_identifiers, ip_list, mac_addresses, all_ports, smtp_domains, urls
 from util import boolean_with_probability
 
@@ -31,22 +31,32 @@ def generate_virtualinfo_report():
     Generates a report that includes virtual data
     """
     dir_ip = ip_list[randint(0,999)]
-
-    v_report = f"\n Direccion IP (en red interna): {dir_ip}"
     domain = smtp_domains[randint(0, len(smtp_domains)-1)]
-    v_report += f"\nDireccion MAC del dispositivo: {mac_addresses[randint(0, 999)]}"
-    v_report += f"\nURL de acceso a expediente: http://{domain}/{urls[randint(0, len(urls)-1)]}"
-    v_report += f"\nPuerto de acceso al sistema clinico: {dir_ip}:{all_ports[randint(0, 65536)]}"
-    v_report += f"\nServidor SMTP (para envio de informacion): smtp.{domain}"
+    v_report = ""
+    if random() < 0.1:
+        v_report += f"Se registro una consulta virtual desde la Direccion IP (en red interna): {dir_ip}"
+        v_report += f"con Direccion MAC del dispositivo: {mac_addresses[randint(0, 999)]}"
+    if random() < 0.1:
+        v_report += f"Se realizo un expediente, con  URL de acceso a expediente http://{domain}/{urls[randint(0, len(urls)-1)]}"
+    if random() < 0.1:
+        v_report += f"Se le dio al usuario un puerto {dir_ip}:{all_ports[randint(0, 65536)]} para ingreso al sistema clinico"
+    if random() < 0.1:
+        v_report += f"El Servidor SMTP (para envio de informacion) en el que este usuario se comunica es smtp.{domain}"
     return v_report
 
 def generate_biometricid_report():
     """
     Generates a report that includes biometric data
     """
-    b_report = f"\nHuella dactilar: {biometric_identifiers[randint(0,4999)]}"
-    b_report += f"\nEscaneo retiniano: {biometric_identifiers[randint(0,4999)]}"
-    b_report += f"\nReconocimiento facial: {biometric_identifiers[randint(0,4999)]}"
-    b_report += f"\nFirma biometrica: {biometric_identifiers[randint(0,4999)]}"
-    b_report += f"\nEscaneo del iris: {biometric_identifiers[randint(0,4999)]}"
+    b_report = ""
+    if random() < 0.1:
+        b_report += f"Se registro una sesion de Huella dactilar, el codigo obtenido fue para revisarla fue {biometric_identifiers[randint(0,4999)]}."
+    if random() < 0.1:
+        b_report += f"Se registro una sesion de Escaneo retiniano, el codigo obtenido fue para revisarla fue {biometric_identifiers[randint(0,4999)]}."
+    if random() < 0.1:
+        b_report += f"Se registro una sesion de Reconocimiento facial, el codigo obtenido fue para revisarla fue {biometric_identifiers[randint(0,4999)]}."
+    if random() < 0.1:
+        b_report += f"Se registro una sesion de Firma biometrica, el codigo obtenido fue para revisarla fue {biometric_identifiers[randint(0,4999)]}."
+    if random() < 0.1:
+        b_report += f"Se registro una sesion de Escaneo del iris, el codigo obtenido fue para revisarla fue {biometric_identifiers[randint(0,4999)]}."
     return b_report
