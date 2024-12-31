@@ -8,8 +8,9 @@ class Identification():
         self.name, self.first_surname, self.second_surname, self.dni, self.birthdate, self.gender, self.gender_mention = generate_identification_person()
     
     def identification_to_string(self):
-        dirty_name, dirty_first_surname, dirty_second_surname = dirty_names(self.name, self.first_surname, self.second_surname)
-        return f"Nombre: {dirty_name} {dirty_first_surname} {dirty_second_surname}\nDNI: {self.dni}\nFecha de nacimiento: {self.birthdate}\nGénero: {self.gender_mention}\n"
+        # dirty_name, dirty_first_surname, dirty_second_surname = dirty_names(self.name, self.first_surname, self.second_surname)
+        # return f"Nombre: {dirty_name} {dirty_first_surname} {dirty_second_surname}\nDNI: {self.dni}\nFecha de nacimiento: {self.birthdate}\nGénero: {self.gender_mention}\n"
+        return f"Nombre: {self.name} {self.first_surname} {self.second_surname}\nDNI: {self.dni}\nFecha de nacimiento: {self.birthdate}\nGénero: {self.gender_mention}\n"
 
 class Address():
     def __init__(self):
