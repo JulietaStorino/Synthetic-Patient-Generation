@@ -10,7 +10,7 @@ def proccess_label(label_type, value, start, end, label_id):
     if label_id < 10:
         text += f"T{label_id}\t"
     else:
-        text += f"T{label_id} "
+        text += f"T{label_id}\t"
 
     text += f"{label_type} {start} {end}\t{value}\n"
 
